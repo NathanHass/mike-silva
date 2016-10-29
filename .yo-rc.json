@@ -1,0 +1,13 @@
+{
+  "generator-timber": {
+    "themeName": "Mike Silva Theme",
+    "themeSlug": "MikeSilva",
+    "includeTests": false,
+    "templates": [
+      "404",
+      "archive",
+      "page",
+      "single"
+    ]
+  }
+}

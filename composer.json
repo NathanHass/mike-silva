@@ -1,0 +1,14 @@
+{
+  "name": "Mike Silva Theme",
+  "description": "WP Theme for Mike Silva made with Timber",
+  "type":"wordpress-theme",
+  "minimum-stability" : "stable",
+  "authors": [
+      {
+          "name": "Nathan Hass"
+      }
+  ],
+  "require": {
+	  "timber/timber": "^1.0"
+  }
+}
