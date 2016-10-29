@@ -1,7 +1,7 @@
 {
-  "name": "neu-news-wp-theme",
+  "name": "mike-silva",
   "version": "1.0.0",
-  "description": "A wordpress theme for Northeastern University News",
+  "description": "A wordpress theme for Mike Silva",
   "main": "index.js",
   "directories": {
     "test": "tests"
@@ -14,14 +14,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Upstatement/neu-news-wp-theme.git"
+    "url": "git+https://github.com/nathanhass/mike-silva.git"
   },
-  "author": "Emma Gardner",
+  "author": "Nathan Hass",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Upstatement/neu-news-wp-theme/issues"
+    "url": "https://github.com/nathanhass/mike-silva/issues"
   },
-  "homepage": "https://github.com/Upstatement/neu-news-wp-theme#readme",
+  "homepage": "https://github.com/nathanhass/mike-silva#readme",
   "devDependencies": {
     "autoprefixer": "^6.5.0",
     "babel-core": "^6.17.0",

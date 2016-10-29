@@ -1,12 +1,12 @@
 {
-  "name": "neu-news-wp-theme",
-  "description": "A wordpress theme for Northeastern University News",
-  "main": "index.js",
+  "name": "mike-silva",
+  "description": "A wordpress theme for Mike Silva",
+  "main": "main.js",
   "authors": [
-    "Emma Gardner"
+    "Nathan Hass"
   ],
   "license": "ISC",
-  "homepage": "https://github.com/Upstatement/neu-news-wp-theme",
+  "homepage": "https://github.com/nathanhass/mike-silva",
   "ignore": [
     "**/.*",
     "node_modules",
@@ -15,7 +15,6 @@
     "tests"
   ],
   "dependencies": {
-    "upbase": "git@github.com:Upstatement/ups-mixin-lib",
-    "quickshare": "QuickShare#^1.3.7"
+    "upbase": "git@github.com:Upstatement/ups-mixin-lib"
   }
 }
