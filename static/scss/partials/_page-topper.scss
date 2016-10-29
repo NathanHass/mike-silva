@@ -1,0 +1,12 @@
+.page-topper {
+  background: $color-base;
+  padding: 50px 20px;
+  margin-top: -1px;
+}
+
+.page-topper__h {
+  color: #fff;
+  @include font($sans-display, 72px, 700, normal, .01em);
+  text-align: center;
+  margin: 0 auto;
+}

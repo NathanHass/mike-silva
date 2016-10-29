@@ -1,0 +1,156 @@
+
+.nav__logo-text {
+  margin-bottom: 0;
+  line-height: 1;
+  @include font($sans, 15px, 700, normal, .07em, caps);
+  padding-left: 1px;
+}
+
+.page-topper {
+  padding: 0 20px;
+}
+
+.page-topper__width {
+  padding: 20px 0;
+  max-width: 1150px;
+  margin: 0 auto;
+}
+
+.page-topper_h {
+  margin-bottom: 0;
+}
+
+
+.tease-group {
+  padding: 0 20px;
+}
+
+.tease {
+  max-width: 1150px;
+  margin: 0 auto;
+  border-bottom: 1px solid rgba(0,0,0,0.1);
+  clear: both;
+  overflow: hidden;
+  padding: 25px 0;
+
+  @include mq($bp--phablet) {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  @include mq($bp--tablet-xl) {
+    align-items: center;
+    margin-top: 0;
+  }
+
+  &:last-child {
+    border-bottom: 0;
+  }
+}
+
+.tease__img-mod {
+  float: right;
+  width: 25%;
+  max-width: 240px;
+  margin-left: 10px;
+  line-height: 0;
+  margin-top: 38px;
+  margin-bottom: 5px;
+
+  @include mq($bp--phablet) {
+    order: 1;
+    margin-left: 20px;
+    margin-bottom: 0;
+  }
+
+  @include mq($bp--tablet-xl) {
+    margin-top: 0;
+  }
+}
+
+.tease__hgroup {
+  max-width: 770px;
+
+  @include mq($bp--phablet) {
+    width: 75%;
+    order: 0;
+  }
+}
+
+.tease__overline {
+  margin-bottom: 13px;
+  line-height: 1;
+
+  @include mq($bp--phablet) {
+    margin-bottom: 18px;
+  }
+}
+
+.tease__overline__link {
+  text-decoration: none;
+  @include font($sans, 11px, 700, normal, 0.13em, caps);
+  line-height: 1;
+  padding: 0 0 1px 1px;
+  box-shadow: 0 1.3px;
+  transition: all .25s ease;
+
+  @include mq($bp--phablet) {
+    @include font($size: 12px);
+    box-shadow: 0 1.5px;
+  }
+  &:focus,
+  &:hover {
+    color: $color-red;
+  }
+}
+
+.tease__hed {
+  margin-bottom: 10px;
+  @include font($serif, 21px, 400);
+  line-height: 1.1;
+  @include fluid-font-size(
+    21px $bp--mobile,
+    38px 1190px
+  );
+}
+
+.tease__hed__link {
+  text-decoration: none;
+  background: linear-gradient(180deg,transparent 80%, $color-base 83%, transparent 83%);
+  background-repeat: no-repeat;
+  background-size: 0 100%;
+  &:hover,
+  &:focus {
+    background-size: 100% 100%;
+  }
+}
+
+.tease__dek {
+  @include font($sans, 15px, 400);
+  margin-bottom: 7px;
+  color: #494949;
+  max-width: 460px;
+  @include mq($bp--tablet) {
+    @include font($size: 15.5px);
+  }
+}
+
+.tease__byline {
+  @include font($sans, 13px, 400);
+  font-size: 13px;
+  color: #999999;
+  margin-bottom: 0;
+  a {
+    color: #666;
+    box-shadow: 0 -2px #EBF6FA inset;
+    transition: all .2s ease;
+    text-decoration: none;
+    margin-right: 13px;
+    &:focus,
+    &:hover {
+      text-decoration: none;
+      color: $color-base;
+      box-shadow: 0 -13px #EBF6FA inset;
+    }
+  }
+}

@@ -8,7 +8,34 @@
           "name": "Nathan Hass"
       }
   ],
+  "repositories": [
+    {
+      "type": "composer",
+      "url": "https://wpackagist.org"
+    },
+    {
+      "type": "package",
+      "package": {
+        "name": "advanced-custom-fields/advanced-custom-fields-pro",
+        "version": "5.3.8.1",
+        "type": "wordpress-plugin",
+        "dist": {
+          "type": "zip",
+          "url": "https://connect.advancedcustomfields.com/index.php?p=pro&a=download&k=b3JkZXJfaWQ9NDkyOTB8dHlwZT1kZXZlbG9wZXJ8ZGF0ZT0yMDE1LTAyLTA1IDAyOjM2OjMy&t=5.3.8.1"
+        }
+      }
+    }
+  ],
+  "extra": {
+    "installer-paths": {
+      "../../plugins/{$name}/": [
+        "wpackagist-plugin/*",
+        "type:wordpress-plugin"
+      ]
+    }
+  },
   "require": {
-	  "timber/timber": "^1.0"
+    "wpackagist-plugin/timber-library": "~1.1",
+    "advanced-custom-fields/advanced-custom-fields-pro": "~5.3"
   }
 }

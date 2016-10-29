@@ -1,0 +1,21 @@
+{
+  "name": "neu-news-wp-theme",
+  "description": "A wordpress theme for Northeastern University News",
+  "main": "index.js",
+  "authors": [
+    "Emma Gardner"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/Upstatement/neu-news-wp-theme",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "upbase": "git@github.com:Upstatement/ups-mixin-lib",
+    "quickshare": "QuickShare#^1.3.7"
+  }
+}

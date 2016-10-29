@@ -1,0 +1,121 @@
+
+@keyframes pageTransitionOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes pageTransitionIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+
+.content-wrapper {
+  // opacity: 1;
+
+  transition: .3s ease;
+
+  .is-exiting & {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .has-exited & {
+    opacity: 0;
+    animation: pageTransitionIn .35s forwards;
+  }
+}
+
+.is-exiting {
+  cursor: progress;
+
+  .nav__logo path {
+    fill: $color-red;
+  }
+
+  .nav__width {
+    border-bottom: 1px solid #9B9B9B;
+  }
+}
+
+.tease {
+  transition: all 0.2s;
+
+  .tease__img-mod img {
+    transition: all 0.2s;
+  }
+
+  &.is-target {
+
+    .tease__img-mod img {
+      transition: all 0.2s;
+      width: 100%;
+      max-width: 100%;
+    }
+  }
+}
+
+
+
+// loading animation
+
+
+$loading-duration: 1.3s;
+$loading-delay: $loading-duration / 3;
+$loading-size: 33px;
+
+
+.loading {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate3D(-50%, -50%, 0);
+}
+
+.is-exiting {
+
+  // .loading__dot {
+  //   display: inline-block;
+  //   @include size(45px);
+  //   border-radius: 50%;
+  //   background-color: #072B42;
+  //   margin: 0 3px;
+  //   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.25);
+  //   opacity: 0;
+  //   transform: translate3D(0, 0, 0);
+  //   animation: loading-scale $loading-duration infinite ;
+  // }
+
+}
+//
+// Cross-Platform CSS Animations
+//
+
+@keyframes loading-scale {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+
+  10% {
+    transform: scale(0);
+    opacity: 0;
+  }
+
+  45% {
+    opacity: 1;
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: 0;
+  }
+}

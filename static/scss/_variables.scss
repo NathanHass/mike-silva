@@ -1,0 +1,225 @@
+// colors
+// -------
+
+// Gray
+$color-gray-0:               #000000;
+$color-gray-1:               #111111;
+$color-gray-2:               #222222;
+$color-gray-3:               #333333;
+$color-gray-4:               #444444;
+$color-gray-5:               #555555;
+$color-gray-6:               #666666;
+$color-gray-7:               #777777;
+$color-gray-8:               #888888;
+$color-gray-9:               #999999;
+$color-gray-a:               #aaaaaa;
+$color-gray-b:               #bbbbbb;
+$color-gray-c:               #cccccc;
+$color-gray-d:               #dddddd;
+$color-gray-e:               #eeeeee;
+$color-gray-f0:              #f0f0f0;
+$color-gray-f5:              #f5f5f5;
+$color-gray-f7:              #f7f7f7;
+$color-gray-f9:              #f9f9f9;
+$color-gray-f:               #ffffff;
+$color-black:                $color-gray-0;
+$color-white:                $color-gray-f;
+
+// RAINBOWS
+$color-red:                  #FA0000;
+$color-yellow:               #FFE954;
+$color-blue:                 #CDEEFA;
+$color-bg-tan:               #F9F5EE;
+$color-bg-blue:              #EEF6F9;
+
+// Applications
+$color-base:                 $color-gray-0;
+$color-text:                 #1a1a1a;
+$color-base-tint-5:          rgba( $color-base, 0.05 );
+$color-base-tint-10:         rgba( $color-base, 0.1 );
+$color-wrapper-bg:           $color-white;
+$color-body-bg:              $color-wrapper-bg;
+$color-gallery-bg:           $color-base-tint-5;
+$color-footer-bg:            $color-base;
+$color-inverted:             $color-wrapper-bg;
+$color-inverted-tint-10:     rgba( $color-inverted, 0.1 );
+$color-link:                 $color-base;
+$color-link-active:          $color-link;
+$color-link-hover:           $color-link;
+$color-border:               $color-base;
+$color-heading:              $color-base;
+$color-heading-small:        $color-base;
+$color-code:                 $color-base;
+$color-code-bg:              rgba( $color-base, 0.05 );
+$color-table-border:         $color-border;
+$color-table-head:           #fff;
+$color-table-head-bg:        $color-base;
+$color-table-caption:        #999;
+$color-table-th-border:      $color-border;
+$color-table-td-border:      $color-border;
+$color-table-stripes:        rgba( $color-base, 0.05 );
+$color-input-focusBorder:    $color-border;
+$color-button-bg:            transparent;
+$color-button-text:          $color-base;
+$color-button-primary-bg:    $color-base;
+$color-button-primary-text:  $color-white;
+$color-placeholder-text:     rgba( $color-base, 0.4 );
+$color-highlight-tag:        rgba( $color-base, 0.1 );
+$color-footer-arrow:         darken( $color-base, 15% );
+$color-feed-border:          mix($color-base, $color-inverted, 20%);
+
+
+// Typography & Vertical Whitespace
+// -------
+
+// Font Size
+$font-size-base:             19px;
+$font-size-micro:            12px;
+$font-size-h6:               14px;
+$font-size-h5:               16px;
+$font-size-h4:               18px;
+$font-size-h3:               24px;
+$font-size-h2:               30px;
+$font-size-h1:               36px;
+$font-size-jumbo:            48px;
+
+// applications
+$font-size-table-caption:    $font-size-h6;
+$font-size-form:             $font-size-h5;
+$font-size-legend:           $font-size-h3;
+$font-size-button:           $font-size-h6;
+
+// Line Height
+$line-height-base:           1.55;
+$line-height-micro:          1.3;
+$line-height-h6:             $line-height-base;
+$line-height-h5:             $line-height-base;
+$line-height-h4:             1.3;
+$line-height-h3:             1.3;
+$line-height-h2:             1.15;
+$line-height-h1:             1.15;
+$line-height-jumbo:          1.1;
+
+// Margin & Padding
+$font-margin-base:           0 0 25px 0;
+$font-margin-h6:             $font-margin-base;
+$font-margin-h5:             $font-margin-base;
+$font-margin-h4:             $font-margin-base;
+$font-margin-h3:             $font-margin-base;
+$font-margin-h2:             $font-margin-base;
+$font-margin-h1:             0 0 27px 0;
+// applications
+$font-margin-blockquote:     1em 40px;
+$font-margin-hgroup:         $font-margin-base;
+$font-margin-list:           $font-margin-base;
+$font-padding-list:          0 0 0 40px;
+$font-margin-dd:             0 0 0 40px;
+$font-padding-code:          .3em .3em .1em;
+$font-margin-code:           30px 0;
+
+
+// Font Family
+$font-family-sans:            'akkurat', sans-serif;
+$font-family-sans-semi:       'trim-poster-semi-condensed', sans-serif;
+$font-family-sans-condensed:  'trim-poster-extra-compressed', sans-serif;
+$font-family-serif:           'harriet', serif;
+$font-family-serif-display:   'harriet-display', serif;
+$font-family-monospace:       'akkurat-mono', monospace;
+
+$sans:                        $font-family-sans;
+$sans-display:                $font-family-sans-condensed;
+$serif:                       $font-family-serif;
+$serif-display:               $font-family-serif-display;
+$mono:                        $font-family-monospace;
+// applications
+
+$font-family-base:           $serif;
+$font-family-heading:        $font-family-sans;
+
+
+// Font Weights
+$font-weight--light:         300;
+$font-weight--reg:           400;
+$font-weight--bold:          700;
+$font-weight--black:         900;
+
+// tables
+// -------
+
+$table-border:               1px solid $color-table-border;
+$table-margin:               35px 0;
+$table-padding:              0.5em 1em;
+$table-caption-padding:      0 0 10px;
+
+// forms
+// -------
+
+$form-margin:                0;
+$form-legend-border:         1px solid #e5e5e5;
+$form-legend-borderWidth:    0 0 1px 0;
+$form-legend-margin:         0 0 20px;
+$form-legend-padding:        0 0 4px;
+$form-fieldset-border:       0;
+$form-fieldset-margin:       30px 0;
+$form-fieldset-padding:      0;
+$form-label-margin:          0.5em 0 0.2em;
+$form-row-margin:            0 0 10px;
+$form-input-margin:          0.25em 0;
+$form-input-padding:         0.5em 0.6em;
+$form-input-border:          1px solid #ccc;
+$form-input-shadow:          inset 0 1px 3px #eee;
+$form-input-borderRadius:    0;
+$form-input-focusShadow:     0 0 4px 0 rgba(18 ,159 ,234 ,0.2);
+
+// Layout
+// -------
+
+$width-desktop:              980px;
+$width-content:              720px;
+
+// Margins
+
+$spacing-xs:                 10px;
+$spacing-sm:                 15px;
+$spacing-md:                 20px;
+$spacing-lg:                 30px;
+$spacing-xl:                 60px;
+$spacing-xxl:                90px;
+$margin-row:                 -$spacing-lg;
+
+
+// Breakpoints
+// -------
+
+
+// Generic
+$bp--mobile:                  300px;
+$bp--phablet:                 401px;
+$bp--tablet:                  600px;
+$bp--tablet-xl:               768px;
+$bp--desktop:                 1070px;
+$bp--desktop-xl:              1350px;
+$bp--desktop-xxl:             1500px;
+
+
+// z-index
+// -------
+
+$zIndex-0:                   1;
+$zIndex-1:                   100;
+$zIndex-2:                   200;
+$zIndex-3:                   300;
+$zIndex-4:                   400;
+$zIndex-5:                   500;
+$zIndex-6:                   600;
+$zIndex-7:                   700;
+$zIndex-8:                   800;
+$zIndex-9:                   900;
+$zIndex-10:                  1000;
+
+// Timing
+// -------
+
+$timing:                     cubic-bezier(0.645,0.045,0.355,1);
+$timing-butter:              cubic-bezier(0.215, 0.61, 0.355, 1);
+

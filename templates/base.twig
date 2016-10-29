@@ -7,38 +7,40 @@
 {% endblock %}
 
 	<body class="{{body_class}}" data-template="base.twig">
-		<header class="header" >
-			{% block header %}
-				<div class="wrapper">
-					<h1 class="hdr-logo" role="banner">
-						<a class="hdr-logo-link" href="{{site.url}}" rel="home">{{site.name}}</a>
-					</h1>
-					<nav id="nav-main" class="nav-main" role="navigation">
-						{% include "menu.twig" with {'menu': menu.get_items} %}
-					</nav><!-- #nav -->
-				</div>
-			{% endblock %}
-		</header>
+    <div id="js-smoothstate-container">
 
-		<section id="content" role="main" class="content-wrapper">
-			{% if title %}<h1>{{title}}</h1>{% endif %}
-			<div class="wrapper {{sidebar_class}}">
-				{% block content %}
-					Sorry, no content
+			<header class="header" >
+				{% block header %}
+					<div class="wrapper">
+						<h1 class="hdr-logo" role="banner">
+							<a class="hdr-logo-link" href="{{site.url}}" rel="home">{{site.name}}</a>
+						</h1>
+						<nav id="nav-main" class="nav-main" role="navigation">
+							{% include "menu.twig" with {'menu': menu.get_items} %}
+						</nav><!-- #nav -->
+					</div>
 				{% endblock %}
-			</div>
-			{% if sidebar %}
-				<aside class="layout-sidebar">
-					{{sidebar}}
-				</aside>
-			{% endif %}
-		</section>
+			</header>
 
-		{% block footer %}
-			<footer id="footer">
+			<section id="content" role="main" class="content-wrapper">
+				{% if title %}<h1>{{title}}</h1>{% endif %}
+				<div class="wrapper {{sidebar_class}}">
+					{% block content %}
+						Sorry, no content
+					{% endblock %}
+				</div>
+				{% if sidebar %}
+					<aside class="layout-sidebar">
+						{{sidebar}}
+					</aside>
+				{% endif %}
+			</section>
+
+			{% block footer %}
 				{% include 'footer.twig' %}
-			</footer>
-			{{ function('wp_footer') }}
-		{% endblock %}
+				{{ function('wp_footer') }}
+			{% endblock %}
+		</div>
+    <script type="text/javascript" src="{{site.theme.link}}/static/build/bundle.js" charset="utf-8"></script>
 	</body>
 </html>

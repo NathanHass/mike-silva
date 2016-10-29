@@ -1,0 +1,98 @@
+@mixin fluid-font-size($tween-start: 16px 400px, $tween-end: 100px 1400px, $use-mq: true) {
+  $min-size: nth($tween-start, 1);
+  $max-size: nth($tween-end, 1);
+  $min-width: nth($tween-start, 2);
+  $max-width: nth($tween-end, 2);
+
+
+  // $mid-size: #{($max-size - $min-size) * .5  + strip-units($min-size)};
+  // $third-width: #{($max-width - $min-width) * .333 + strip-units($min-width)};
+  // $twothird-width: #{($max-width - $min-width) * .666 + strip-units($min-width)};
+
+  // @include mq($min-width, $third-width) {
+  //   font-size: $min-size;
+  // }
+  // @include mq($third-width, $twothird-width) {
+  //   font-size: $mid-size;
+  // }
+  // @include mq($twothird-width) {
+  //   font-size: $max-size;
+  // }
+
+  // .csscalc.cssvwunit & {
+    @if $use-mq {
+      font-style: $min-size;
+      @include mq($min-width, $max-width) {
+        font-size: calc(#{$min-size} + (#{strip-units($max-size)} - #{strip-units($min-size)}) * (100vw - #{$min-width}) / (#{strip-units($max-width)} - #{strip-units($min-width)}));
+      }
+      @include mq($max-width) {
+        font-size: $max-size;
+      }
+    } @else {
+      font-size: calc(#{$min-size} + (#{strip-units($max-size)} - #{strip-units($min-size)}) * (100vw - #{$min-width}) / (#{strip-units($max-width)} - #{strip-units($min-width)}));
+    }
+  // }
+}
+
+
+// Reset Element
+// ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+// FOR: Stripping the styles from default HTML elements
+//      such as an input, ul, li, a, h1, h2, h3, etc.
+// WHY: When using normalize, you might want to set
+//      an element to a baseline with no style applied
+// USE: @include reset(li);
+
+.reset {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  vertical-align: baseline;
+  background-color: transparent;
+}
+
+@mixin reset($el: generic) {
+
+  $tag: (
+    generic: true,
+    h: true,
+    ol: true,
+    ul: true,
+    li: true,
+    button: true,
+    input: true
+  );
+
+  @if map-has-key($tag, $el) {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    vertical-align: baseline;
+    background-color: transparent;
+
+    @if $el == "input"
+     or $el == "button" {
+      box-shadow: none;
+      border-radius: 0;
+      -webkit-appearance: none;
+      &:focus {
+        outline: 0;
+      }
+    } // input
+
+    @if $el == "ul"
+     or $el == "ol" {
+      list-style: none;
+    }
+
+  } // map-has-key
+
+  // If the key doesn't exist in the map
+  @else {
+    @warn "Unfortunately, the element `#{$el}` isn't recognized. "
+        + "Please make sure it is defined in the `reset` mixin.";
+  }
+
+} // reset

@@ -1,0 +1,173 @@
+// @charset 'UTF-8';
+
+
+// // Fonts
+// // -------
+
+// @mixin font-face(
+//   $family-name,
+//   $file-name,
+//   $font-weight: normal,
+//   $font-style: normal
+//   ){
+//   @font-face {
+//     $font-path: "../../../static/fonts/#{$file-name}";
+//     font-family: "#{$family-name}";
+//     src: local('☺'),
+//       url($font-path + '.woff') format('woff'),
+//       url($font-path + '.svg') format('svg'),
+//       url($font-path + '.eot?iefix') format('eot'),
+//       local('☺');
+//     font-weight: $font-weight;
+//     font-style: $font-style;
+//   }
+// }
+
+// @include font-face(
+//     $family-name: akkurat,
+//     $file-name: AkkuratProRegular,
+//     $font-weight: 400
+// );
+
+
+// @include font-face(
+//     $family-name: akkurat,
+//     $file-name: AkkuratProBold,
+//     $font-weight: 700
+// );
+
+
+// @include font-face(
+//     $family-name: akkurat-mono,
+//     $file-name: AkkuratMono,
+//     $font-weight: 400
+// );
+
+// @include font-face(
+//     $family-name: harriet,
+//     $file-name: harriet_text_thin,
+//     $font-weight: 100
+// );
+
+// @include font-face(
+//     $family-name: harriet,
+//     $file-name: harriet_text_light,
+//     $font-weight: 300
+// );
+
+
+// @include font-face(
+//     $family-name: harriet,
+//     $file-name: harriet_text_regular,
+//     $font-weight: 400
+// );
+
+// @include font-face(
+//     $family-name: harriet,
+//     $file-name: harriet_text_regular_italic,
+//     $font-weight: 400,
+//     $font-style: italic
+// );
+
+
+// @include font-face(
+//     $family-name: harriet,
+//     $file-name: harriet_text_medium,
+//     $font-weight: 500
+// );
+
+
+// @include font-face(
+//     $family-name: harriet,
+//     $file-name: harriet_text_bold,
+//     $font-weight: 700
+// );
+
+
+// @include font-face(
+//     $family-name: harriet,
+//     $file-name: harriet_text_bold,
+//     $font-weight: 700,
+//     $font-style: italic
+// );
+
+// //
+// //
+// //
+
+
+
+// @include font-face(
+//     $family-name: harriet-display,
+//     $file-name: harriet_display_thin,
+//     $font-weight: 100
+// );
+
+// @include font-face(
+//     $family-name: harriet-display,
+//     $file-name: harriet_display_light,
+//     $font-weight: 300
+// );
+
+
+// @include font-face(
+//     $family-name: harriet-display,
+//     $file-name: harriet_display_light_italic,
+//     $font-weight: 300,
+//     $font-style: italic
+// );
+
+// @include font-face(
+//     $family-name: harriet-display,
+//     $file-name: harriet_display_regular,
+//     $font-weight: 400
+// );
+
+
+// @include font-face(
+//     $family-name: harriet-display,
+//     $file-name: harriet_display_medium,
+//     $font-weight: 500
+// );
+
+
+// @include font-face(
+//     $family-name: harriet-display,
+//     $file-name: harriet_display_bold,
+//     $font-weight: 700
+// );
+
+
+// @include font-face(
+//     $family-name: harriet-display,
+//     $file-name: harriet_display_bold_italic,
+//     $font-weight: 700,
+//     $font-style: italic
+// );
+
+
+// @include font-face(
+//     $family-name: harriet-display,
+//     $file-name: harriet_display_black,
+//     $font-weight: 900
+// );
+
+
+
+// @include font-face(
+//     $family-name: trim-poster-semi-condensed,
+//     $file-name: TrimPosterSemiCondensed,
+//     $font-weight: 700
+// );
+
+// @include font-face(
+//     $family-name: trim-poster-extra-compressed,
+//     $file-name: TrimPosterExtraCompressed,
+//     $font-weight: 700
+// );
+
+// @include font-face(
+//     $family-name: trim-poster-condensed,
+//     $file-name: TrimPosterCondensed,
+//     $font-weight: 700
+// );
