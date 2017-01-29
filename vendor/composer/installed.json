@@ -109,6 +109,19 @@
         ]
     },
     {
+        "name": "advanced-custom-fields/advanced-custom-fields-pro",
+        "version": "5.3.8.1",
+        "version_normalized": "5.3.8.1",
+        "dist": {
+            "type": "zip",
+            "url": "https://connect.advancedcustomfields.com/index.php?p=pro&a=download&k=b3JkZXJfaWQ9NDkyOTB8dHlwZT1kZXZlbG9wZXJ8ZGF0ZT0yMDE1LTAyLTA1IDAyOjM2OjMy&t=5.3.8.1",
+            "reference": null,
+            "shasum": null
+        },
+        "type": "wordpress-plugin",
+        "installation-source": "dist"
+    },
+    {
         "name": "wpackagist-plugin/timber-library",
         "version": "1.1.8",
         "version_normalized": "1.1.8.0",
@@ -129,18 +142,5 @@
         "type": "wordpress-plugin",
         "installation-source": "dist",
         "homepage": "https://wordpress.org/plugins/timber-library/"
-    },
-    {
-        "name": "advanced-custom-fields/advanced-custom-fields-pro",
-        "version": "5.3.8.1",
-        "version_normalized": "5.3.8.1",
-        "dist": {
-            "type": "zip",
-            "url": "https://connect.advancedcustomfields.com/index.php?p=pro&a=download&k=b3JkZXJfaWQ9NDkyOTB8dHlwZT1kZXZlbG9wZXJ8ZGF0ZT0yMDE1LTAyLTA1IDAyOjM2OjMy&t=5.3.8.1",
-            "reference": null,
-            "shasum": null
-        },
-        "type": "wordpress-plugin",
-        "installation-source": "dist"
     }
 ]

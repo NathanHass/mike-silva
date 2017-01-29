@@ -22,15 +22,15 @@ $color-gray-f5:              #f5f5f5;
 $color-gray-f7:              #f7f7f7;
 $color-gray-f9:              #f9f9f9;
 $color-gray-f:               #ffffff;
-$color-black:                $color-gray-0;
+$color-black:                #031b1a;
 $color-white:                $color-gray-f;
 
 // RAINBOWS
-$color-red:                  #FA0000;
-$color-yellow:               #FFE954;
-$color-blue:                 #CDEEFA;
-$color-bg-tan:               #F9F5EE;
-$color-bg-blue:              #EEF6F9;
+$color-red:                  #ff2f00;
+$color-spot:                 $color-red;
+// $color-blue:                 #f4fcfc;
+$color-blue:                 #d4f3f5;
+$color-green:                #3d6a5f;
 
 // Applications
 $color-base:                 $color-gray-0;
@@ -119,29 +119,22 @@ $font-margin-code:           30px 0;
 
 
 // Font Family
-$font-family-sans:            'akkurat', sans-serif;
-$font-family-sans-semi:       'trim-poster-semi-condensed', sans-serif;
-$font-family-sans-condensed:  'trim-poster-extra-compressed', sans-serif;
-$font-family-serif:           'harriet', serif;
-$font-family-serif-display:   'harriet-display', serif;
-$font-family-monospace:       'akkurat-mono', monospace;
+$font-family-sans:            'Rubik', sans-serif;
+$font-family-monospace:       monospace;
 
 $sans:                        $font-family-sans;
-$sans-display:                $font-family-sans-condensed;
-$serif:                       $font-family-serif;
-$serif-display:               $font-family-serif-display;
-$mono:                        $font-family-monospace;
+
 // applications
 
-$font-family-base:           $serif;
-$font-family-heading:        $font-family-sans;
+$font-family-base:           $sans;
+$font-family-heading:        $sans;
 
 
 // Font Weights
 $font-weight--light:         300;
 $font-weight--reg:           400;
-$font-weight--bold:          700;
-$font-weight--black:         900;
+$font-weight--bold:          500;
+$font-weight--black:         700;
 
 // tables
 // -------

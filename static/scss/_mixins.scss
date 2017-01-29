@@ -96,3 +96,12 @@
   }
 
 } // reset
+
+@mixin increment-delay($offset: .05s, $count: 10, $delay: 0, $type: transition) {
+  @for $i from 1 through $count {
+    $time: ($i * $offset) + $delay;
+    &:nth-child(#{$i}) {
+      #{$type}-delay: $time;
+    }
+  }
+}

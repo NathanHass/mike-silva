@@ -1,9 +1,36 @@
 {% extends "base.twig" %}
 
 {% block content %}
-  <div class="tease-group">
-  	{% for post in posts %}
-  		{% include ['tease-'~post.post_type~'.twig', 'tease.twig'] %}
-  	{% endfor %}
+
+  <div class="hp__sidebar">
+    <nav class="hp__sidebar__nav">
+      <h2 class="hp__sidebar__nav__h">Moving Images</h2>
+      <ul class="hp__sidebar__list">
+
+        {% for post in stream.get_posts|slice(0,5) %}
+          <li class="hp__sidebar__item"><a class="hp__sidebar__link js-hp-trigger" data-image="{{post.thumbnail.src}}" data-image-alt="{{ post.thumbnail.alt }}" href="{{post.link}}">{{post.title}}</a></li>
+        {% endfor %}
+        <li class="hp__sidebar__item"><a class="hp__sidebar__link hp__sidebar__link--all" href="/work">View All</a></li>
+      </ul>
+    </nav>
   </div>
+  <div class="hp__img-mod">
+    <a class="hp__img-bg-img" href="">
+      <img src="" alt="" class="hp__img">
+    </a>
+  </div>
+
+  <div class="intro__anim">
+    <div class="intro__anim__bg">
+      <div class="intro__anim__square-mod">
+        <svg class="intro__anim__square" viewBox="0 0 100 100"
+            xmlns="http://www.w3.org/2000/svg">
+
+          <rect class="rect-1" x="0" y="0" width="100" height="100"/>
+          <rect class="rect-2" x="0" y="0" width="100" height="100"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+
 {% endblock %}

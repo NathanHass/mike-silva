@@ -45,6 +45,7 @@
     "webpack": "^1.13.2"
   },
   "dependencies": {
+    "fontfaceobserver": "^2.0.5",
     "scrollmagic": "^2.0.5"
   }
 }

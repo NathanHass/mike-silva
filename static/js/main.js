@@ -1,7 +1,7 @@
-import PageTrans from './modules/mikesilva_page_transition';
+import Mikesilva from './mikesilva';
 import $ from 'jquery';
 
 $( document ).on( 'ready', function( ) {
-    let pageTrans = new PageTrans();
-    pageTrans.init();
+    // Create site behaviors
+    Mikesilva.create();
 });

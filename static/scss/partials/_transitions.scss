@@ -21,7 +21,7 @@
 .content-wrapper {
   // opacity: 1;
 
-  transition: .3s ease;
+  transition: all .3s ease;
 
   .is-exiting & {
     opacity: 0;
@@ -30,7 +30,7 @@
 
   .has-exited & {
     opacity: 0;
-    animation: pageTransitionIn .35s forwards;
+    animation: pageTransitionIn .95s forwards;
   }
 }
 

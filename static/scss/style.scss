@@ -1,3 +1,5 @@
+$intro-anim-timing: 2s;
+
 @charset "UTF-8";
 
 // variables
@@ -16,5 +18,265 @@
 @import 'base/base-grid';
 
 // Other styles
+@import 'partials/plyr';
 @import 'partials/transitions';
+@import 'partials/nav';
+@import 'partials/work';
+@import 'partials/single';
 
+#content {
+  min-height: 100vh;
+  min-width: 100vw;
+}
+
+@keyframes spin {
+  0% {
+    transform: translate3d(-50%, -50%, 0) rotate(0deg);
+  }
+  100% {
+    transform: translate3d(-50%, -50%, 0) rotate(360deg);
+  }
+}
+
+@keyframes shrink {
+  0% {
+    width: 100vw;
+  }
+  100% {
+    width: 75vw;
+  }
+}
+
+.hp__img-mod {
+
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  @include absolute(0 0 0 n);
+  background-color: $color-black;
+
+  .display-hp-content & {
+    animation: shrink $intro-anim-timing ease forwards;
+  }
+}
+
+.hp__img-bg-img {
+  @include absolute(0);
+
+  background-size: cover;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+
+  &.topper-trans-in {
+    opacity: 0;
+    animation: hp-topper-in 1s ease forwards;
+  }
+  &.topper-trans-out {
+    opacity: 1;
+    animation: hp-topper-out .5s ease forwards;
+  }
+}
+
+.hp__img {
+  @include absolute(0 n 0 0);
+  min-height: 100%;
+  min-width: 100%;
+  opacity: 0;
+}
+
+.intro__anim {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  @include absolute(0 0 0 n);
+  // hide anim for dev
+  // animation-duration: 0s;
+  // animation-delay: 0s;
+  .display-hp-content & {
+    pointer-events: none;
+    animation: shrink $intro-anim-timing ease forwards;
+  }
+}
+
+.intro__anim__bg {
+  // background: conic-gradient(#9dd2e5, $color-blue);
+  background-color: $color-blue;
+  @include absolute(0);
+
+  // animation: spin #{$intro-anim-timing * 2} linear infinite;
+  transition: background .6s ease #{$intro-anim-timing - .4s};
+
+  .display-hp-content & {
+    background: rgba($color-blue, 0);
+  }
+}
+@keyframes dash {
+
+  // 50% {
+  //   stroke-dashoffset: 0;
+  // }
+  100% {
+    stroke-dashoffset: -400;
+  }
+}
+
+.intro__anim__square-mod {
+  width: 250px;
+  height: 250px;
+  @include absolute(50% n n 50%);
+  transform: translate3d(-50%, -50%, 0);
+  background-position: 50% 50%;
+}
+
+.intro__anim__square {
+  width: 100%;
+  height: 100%;
+  fill: transparent;
+  stroke-width: 4;
+  .display-hp-content & {
+    stroke-width: 0;
+    transition: all .6s ease #{$intro-anim-timing - .8s};
+
+  }
+  .rect-1 {
+    stroke: rgba(255,255,255,.2);
+  }
+
+  .rect-2 {
+    // stroke: #d9311a;
+    stroke: $color-spot;
+    stroke-dasharray: 400;
+    stroke-dashoffset: 400;
+    animation: dash 5.25s ease-in infinite .5s;
+  }
+}
+
+.hp__sidebar {
+  @include fixed(0 n 0 0);
+  width: 25vw;
+  transform: translate3d(100%, 0, 0);
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: column;
+  padding: 30px 30px 19px;
+
+  transition: all .7s ease #{$intro-anim-timing - .6s};
+  .display-hp-content & {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.hp__sidebar__nav__h {
+  @include font($sans, 16px, 500)
+  margin-bottom: 39px;
+  position: relative;
+  &:after {
+    display: block;
+    content: '';
+    @include absolute(n n -24px 2px);
+    width: 5px;
+    border-bottom: 3px solid;
+    width: 10px;
+  }
+}
+$test-offset: $intro-anim-timing - .6s;
+.hp__sidebar__item {
+  line-height: 1;
+  @include font($sans, 16px, 400);
+  // margin-bottom: 22px;
+  transform: translate3d(100px, 0, 0 );
+  transition: all .7s ease;
+  @include increment-delay($offset: .05s, $count: 7, $delay: strip-units($test-offset));
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  .display-hp-content & {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+
+.hp__sidebar__link {
+  position: relative;
+  transition: all .4s ease;
+  display: block;
+  transform: translate3d(-16px, 0, 0 );
+  padding: 11px 0 11px 16px;
+  // padding-left: 22px;
+  &:focus,
+  &:hover {
+    transform: translate3d(0, 0, 0 );
+    &:before {
+      opacity: 1;
+      transform: translate3d(0, -50%, 0);
+    }
+  }
+  &:before {
+    content: '';
+    display: block;
+    @include absolute(50% n n 0);
+    transform: translate3d(16px, -50%, 0) scale(.1);
+    @include size(10px);
+    background-color: $color-spot;
+    border-radius: 50%;
+    transition: all .4s ease;
+    opacity: 0;
+  }
+}
+
+.hp__sidebar__link--all {
+  color: #aaa;
+  &:focus,
+  &:hover {
+    color: $color-spot
+  }
+}
+
+
+
+@keyframes fade-in {
+  to {
+    opacity: 1;
+  }
+}
+@keyframes fade-out {
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes hp-topper-out {
+  0% {
+    transform: scale(1.02);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0;
+  }
+}
+
+@keyframes hp-topper-in {
+  0% {
+    transform: scale(1.05);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1.02);
+    opacity: 1;
+  }
+}
+
+
+// .hp-topper__feature__img-mod {
+//   .topper-trans-in & {
+//     opacity: 0;
+//     animation: hp-topper-in 1s ease forwards .2s;
+//   }
+//   .topper-trans-out & {
+//     opacity: 1;
+//     animation: hp-topper-out .5s ease forwards;
+//   }
+// }

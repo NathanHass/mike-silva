@@ -1,5 +1,6 @@
-import 'smoothstate';
 import $ from 'jquery';
+import 'jquery.smoothState';
+import Mikesilva from '../mikesilva';
 
 function MikeSilvaPageTransition() {}
 
@@ -61,6 +62,7 @@ MikeSilvaPageTransition.prototype._transitionReady = function($container, $newCo
 *   @param  jQuery Obj $newContent      The new content loaded from the clicked link, provided by the smoothState object
 */
 MikeSilvaPageTransition.prototype._transitionAfter = function($container, $newContent) {
+    Mikesilva.init();
     $container.removeClass('is-exiting').addClass('has-exited');
 };
 

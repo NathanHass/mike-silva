@@ -72,6 +72,21 @@ gulp.task('styles-production', function() {
         .pipe(gulp.dest('./static/build/css/'));
 });
 
+gulp.task('admin-styles', function() {
+    return gulp.src('./static/admin-scss/*.scss')
+        .pipe(gulpPlugin.sass({
+            includePaths: ['bower_components']
+        }))
+        .on('error', gulpPlugin.sass.logError)
+        .pipe(gulpPlugin.postcss([
+            autoprefixer({
+                browsers: ['last 3 versions']
+            })
+        ]))
+        .pipe(gulpPlugin.minifyCss())
+        .pipe(gulp.dest('./static/build/css/'));
+});
+
 /**
 *   Build a custom modernizr file
 */
@@ -92,6 +107,7 @@ gulp.task('modernizr', function() {
 gulp.task('browser-sync', function() {
     var files = [
         './static/scss/**/*.scss',
+        './static/admin-scss/**/*.scss',
         './static/js/**/*.js',
         './**/**/*.twig',
         '*.php'
@@ -108,6 +124,7 @@ gulp.task('browser-sync', function() {
     });
 
     gulp.watch('./static/scss/**/*.scss', ['styles']);
+    gulp.watch('./static/admin-scss/**/*.scss', ['admin-styles']);
     gulp.watch('./static/js/**/*.js', ['scripts']);
     gulp.watch('./static/static/build/*.js').on('change', browserSync.reload);
 });
@@ -117,12 +134,12 @@ gulp.task('browser-sync', function() {
 *   Gulp task for dev
 */
 gulp.task('dev', function() {
-    runSequence('styles', 'scripts', 'modernizr', 'browser-sync');
+    runSequence('styles', 'scripts', 'admin-styles', 'modernizr', 'browser-sync');
 });
 
 /**
 *   Gulp task for production
 */
 gulp.task('production', function() {
-    runSequence('del', 'styles-production', 'scripts', 'modernizr');
+    runSequence('del', 'styles-production', 'scripts', 'admin-styles', 'modernizr');
 });
