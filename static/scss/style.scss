@@ -21,6 +21,7 @@ $intro-anim-timing: 2s;
 @import 'partials/plyr';
 @import 'partials/transitions';
 @import 'partials/nav';
+@import 'partials/services';
 @import 'partials/work';
 @import 'partials/single';
 
@@ -52,11 +53,23 @@ $intro-anim-timing: 2s;
   width: 100vw;
   height: 100vh;
   overflow: hidden;
-  @include absolute(0 0 0 n);
-  background-color: $color-black;
+  @include absolute(0);
+  // color: #8ba5af;
+  color: #052b2d;
+  // color: #2b3e44;
+  background-color: $color-blue--bg;
+  transition: .3s ease;
+  background-image: url('../../img/transition-logo--mint.svg');
+  background-size: 100px;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  pointer-events: none;
 
-  .display-hp-content & {
-    animation: shrink $intro-anim-timing ease forwards;
+  &:after {
+    content: '';
+    @include absolute(0);
+    background-color: currentColor;
+    mix-blend-mode: screen;
   }
 }
 
@@ -66,15 +79,15 @@ $intro-anim-timing: 2s;
   background-size: cover;
   background-position: 50% 50%;
   background-repeat: no-repeat;
+  transition: .3s ease;
+  // filter: contrast(108%) grayscale(100%) brightness(115%);
+  filter: contrast(130%) grayscale(100%) brightness(100%);
+  opacity: 0;
 
-  &.topper-trans-in {
-    opacity: 0;
-    animation: hp-topper-in 1s ease forwards;
-  }
-  &.topper-trans-out {
+  .teases-are-active & {
     opacity: 1;
-    animation: hp-topper-out .5s ease forwards;
   }
+
 }
 
 .hp__img {
@@ -85,36 +98,14 @@ $intro-anim-timing: 2s;
 }
 
 .intro__anim {
-  width: 100vw;
-  height: 100vh;
-  overflow: hidden;
-  @include absolute(0 0 0 n);
-  // hide anim for dev
-  // animation-duration: 0s;
-  // animation-delay: 0s;
-  .display-hp-content & {
-    pointer-events: none;
-    animation: shrink $intro-anim-timing ease forwards;
-  }
+  display: none;
 }
 
 .intro__anim__bg {
-  // background: conic-gradient(#9dd2e5, $color-blue);
-  background-color: $color-blue;
-  @include absolute(0);
-
-  // animation: spin #{$intro-anim-timing * 2} linear infinite;
-  transition: background .6s ease #{$intro-anim-timing - .4s};
-
-  .display-hp-content & {
-    background: rgba($color-blue, 0);
-  }
+  display: none;
 }
 @keyframes dash {
 
-  // 50% {
-  //   stroke-dashoffset: 0;
-  // }
   100% {
     stroke-dashoffset: -400;
   }
@@ -129,45 +120,50 @@ $intro-anim-timing: 2s;
 }
 
 .intro__anim__square {
-  width: 100%;
-  height: 100%;
-  fill: transparent;
-  stroke-width: 4;
-  .display-hp-content & {
-    stroke-width: 0;
-    transition: all .6s ease #{$intro-anim-timing - .8s};
+  display: none;
+  // width: 100%;
+  // height: 100%;
+  // fill: transparent;
+  // stroke-width: 4;
+  // .display-hp-content & {
+  //   stroke-width: 0;
+  //   transition: all .6s ease #{$intro-anim-timing - .8s};
 
-  }
-  .rect-1 {
-    stroke: rgba(255,255,255,.2);
-  }
+  // }
+  // .rect-1 {
+  //   stroke: rgba(255,255,255,.2);
+  // }
 
-  .rect-2 {
-    // stroke: #d9311a;
-    stroke: $color-spot;
-    stroke-dasharray: 400;
-    stroke-dashoffset: 400;
-    animation: dash 5.25s ease-in infinite .5s;
-  }
+  // .rect-2 {
+  //   // stroke: #d9311a;
+  //   stroke: $color-spot;
+  //   stroke-dasharray: 400;
+  //   stroke-dashoffset: 400;
+  //   animation: dash 5.25s ease-in infinite .5s;
+  // }
 }
 
 .hp__sidebar {
-  @include fixed(0 n 0 0);
-  width: 25vw;
-  transform: translate3d(100%, 0, 0);
+  @include fixed(0 0 0 0);
+  z-index: 1;
+  width: 100vw;
+  // transform: translate3d(100%, 0, 0);
   display: flex;
   justify-content: flex-end;
   flex-direction: column;
-  padding: 30px 30px 19px;
+  padding: 30px;
+  box-shadow: 0 0 0 8px $color-navy inset;
 
-  transition: all .7s ease #{$intro-anim-timing - .6s};
-  .display-hp-content & {
-    transform: translate3d(0, 0, 0);
+  .teases-are-active & {
+    background-image: url('../../img/transition-logo--opacity.svg');
+    background-size: 100px;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
   }
 }
 
 .hp__sidebar__nav__h {
-  @include font($sans, 16px, 500)
+  @include font($sans, 16px, 300)
   margin-bottom: 39px;
   position: relative;
   &:after {
@@ -181,56 +177,41 @@ $intro-anim-timing: 2s;
 }
 $test-offset: $intro-anim-timing - .6s;
 .hp__sidebar__item {
+  @include font($sans, 24px, 300);
   line-height: 1;
-  @include font($sans, 16px, 400);
-  // margin-bottom: 22px;
-  transform: translate3d(100px, 0, 0 );
-  transition: all .7s ease;
-  @include increment-delay($offset: .05s, $count: 7, $delay: strip-units($test-offset));
+  color: $color-navy;
 
   &:last-child {
     margin-bottom: 0;
   }
 
-  .display-hp-content & {
-    transform: translate3d(0, 0, 0);
+  @include mq($bp--phablet, $bp--desktop-xl) {
+    @include fluid-font-size(30px $bp--phablet, 72px $bp--desktop-xl)
+  }
+
+  @include mq($bp--desktop-xl) {
+    font-size: 72px;
   }
 }
 
 
 .hp__sidebar__link {
   position: relative;
-  transition: all .4s ease;
   display: block;
-  transform: translate3d(-16px, 0, 0 );
-  padding: 11px 0 11px 16px;
-  // padding-left: 22px;
-  &:focus,
-  &:hover {
-    transform: translate3d(0, 0, 0 );
-    &:before {
-      opacity: 1;
-      transform: translate3d(0, -50%, 0);
-    }
-  }
-  &:before {
-    content: '';
-    display: block;
-    @include absolute(50% n n 0);
-    transform: translate3d(16px, -50%, 0) scale(.1);
-    @include size(10px);
-    background-color: $color-spot;
-    border-radius: 50%;
-    transition: all .4s ease;
-    opacity: 0;
+  transform: translate3d(-10px, 0, 0 );
+  padding: 0.3em 0 0 10px;
+  transition: .3s ease;
+  &.tease-is-active {
+    color: $color-red;
+    transform: translateX(10px);
   }
 }
 
 .hp__sidebar__link--all {
-  color: #aaa;
+  // color: #aaa;
   &:focus,
   &:hover {
-    color: $color-spot
+    color: #fff;
   }
 }
 
@@ -249,22 +230,22 @@ $test-offset: $intro-anim-timing - .6s;
 
 @keyframes hp-topper-out {
   0% {
-    transform: scale(1.02);
+    // transform: scale(1.02);
     opacity: 1;
   }
   100% {
-    transform: scale(1);
+    // transform: scale(1);
     opacity: 0;
   }
 }
 
 @keyframes hp-topper-in {
   0% {
-    transform: scale(1.05);
+    // transform: scale(1.05);
     opacity: 0;
   }
   100% {
-    transform: scale(1.02);
+    // transform: scale(1.02);
     opacity: 1;
   }
 }

@@ -1,16 +1,22 @@
-{% set pages = ['work', 'services', 'the loop'] %}
+{% set pages = [
+	{ name: 'Work',
+		url: 'work'},
+	{ name: 'Services',
+		url: 'services'},
+	{ name: 'The Loop',
+		url: 'the-loop'} ] %}
 
 <nav class="site-nav" >
 	{% block header %}
 		<div class="site-nav__width">
 			<h1 class="site-nav__logo" role="banner">
-				<a class="site-nav__logo__link" href="{{site.url}}" rel="home">Mike Silva</a>
+				<a class="site-nav__logo__link" href="{{site.url}}" rel="home">Mike Silva <span>Moving Images</span></a>
 			</h1>
 
 			<ul class="site-nav__page-list">
 				{% for page in pages %}
 					<li class="site-nav__page-item">
-						<a href="/{{page}}" class="site-nav__page-link">{{page}}</a>
+						<a href="/{{page.url}}" class="site-nav__page-link">{{page.name}}</a>
 					</li>
 				{% endfor %}
 			</ul>

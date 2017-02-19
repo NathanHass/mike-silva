@@ -15,20 +15,21 @@
   @include absolute(0 0 n);
   // background-color: #fff;
   z-index: 3;
+  padding: 0 30px;
 
-  .home & {
-    transform: translate3d(0, -100%, 0);
-    opacity: 0;
-    animation: nav-in 1.5s ease-out .2s forwards;
-  }
+  // .home & {
+  //   transform: translate3d(0, -100%, 0);
+  //   opacity: 0;
+  //   animation: nav-in 1.5s ease-out .2s forwards;
+  // }
 
-  .home .is-exiting &,
-  .home .has-exited & {
+  // .home .is-exiting &,
+  // .home .has-exited & {
 
-    transform: translate3d(0, 0, 0);
-    opacity: 1;
-    animation: none;
-  }
+  //   transform: translate3d(0, 0, 0);
+  //   opacity: 1;
+  //   animation: none;
+  // }
 
   .display-hp-content.home & {
     background-color: rgba(#fff, 0);
@@ -38,7 +39,7 @@
 }
 
 .site-nav__width {
-  padding: 36px 30px 34px;
+  padding: 36px 0 34px;
   overflow: hidden;
 }
 
@@ -47,6 +48,17 @@
   @include font($sans, 16px, 500);
   margin: 0;
   line-height: 1;
+  color: inherit;
+  span {
+    font-weight: 300;
+  }
+}
+
+.teases-are-active {
+  .site-nav__width,
+  .site-nav__logo {
+    // color: #fff;
+  }
 }
 
 .site-nav__logo__link {
@@ -82,8 +94,7 @@
   padding: 3px 6px;
   &:focus,
   &:hover {
-    // background-color: $color-spot;
-    color: $color-spot;
-    background-color: #fff;
+    background-color: $color-spot;
+    color: #fff;
   }
 }

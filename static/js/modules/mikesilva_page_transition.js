@@ -20,10 +20,10 @@ MikeSilvaPageTransition.prototype._transitionSetup = function() {
             render: this._transitionStart
         },
         onReady: {
-            duration: 0,
+            duration: 600,
             render: this._transitionReady.bind(this)
         },
-        onAfter: this._transitionAfter
+        onAfter: this._transitionAfter.bind(this)
     };
 
    this.smoothState = $('#js-smoothstate-container').smoothState(options).data('smoothState');
@@ -52,8 +52,6 @@ MikeSilvaPageTransition.prototype._transitionStart = function($container) {
 *   @param  jQuery Obj $newContent      The new content loaded from the clicked link, provided by the smoothState object
 */
 MikeSilvaPageTransition.prototype._transitionReady = function($container, $newContent) {
-    $container.html($newContent);
-    this._addBodyClasses();
 };
 
 /**
@@ -62,6 +60,10 @@ MikeSilvaPageTransition.prototype._transitionReady = function($container, $newCo
 *   @param  jQuery Obj $newContent      The new content loaded from the clicked link, provided by the smoothState object
 */
 MikeSilvaPageTransition.prototype._transitionAfter = function($container, $newContent) {
+    $container.html($newContent);
+
+    this._addBodyClasses();
+
     Mikesilva.init();
     $container.removeClass('is-exiting').addClass('has-exited');
 };
@@ -72,6 +74,7 @@ MikeSilvaPageTransition.prototype._transitionAfter = function($container, $newCo
 MikeSilvaPageTransition.prototype._addBodyClasses = function() {
     let stateURL = this.smoothState.href;
     let doc, matches, classes;
+    // debugger;
 
     if ( stateURL in this.smoothState.cache ) {
         // Smooth state stores the full HTML document string in the `doc` property of the cached page object.

@@ -31,8 +31,8 @@ MikeSilvaSingle.prototype._initPlyr = function() {
 
 
 MikeSilvaSingle.prototype._playPlyr = function() {
-    debugger;
-    this.player[0].play();
+    // debugger;
+    // this.player[0].play();
 };
 
 

@@ -18,7 +18,7 @@ if ( ! class_exists( 'Timber' ) ) {
 	return;
 }
 $context = Timber::get_context();
-$context['stream'] = new TimberStream(26);
+$context['stream'] = new TimberStream('homepage');
 $templates = array( 'index.twig' );
 if ( is_home() ) {
 	array_unshift( $templates, 'home.twig' );

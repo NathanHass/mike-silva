@@ -1,18 +1,22 @@
-.page-wrapper {
-  padding-top: 86px;
-}
+// .page-wrapper {
+//   padding-top: 86px;
+// }
 
 .work-tease__grid {
-  padding: 0 30px
+  padding: 0 15px;
+  @include mq($bp--tablet, $bp--desktop) {
+    padding: 0 30px;
+  }
+  @include mq($bp--desktop) {
+    padding: 0 50px;
+  }
 }
 
 .work-tease__list {
   margin: 0;
   padding: 0;
   list-style: none;
-  @include mq(401px) {
-    @include grid(2, 10px)
-  }
+  @include grid(2, 10px)
   @include mq($bp--tablet-xl, $bp--desktop) {
     @include grid(3, 10px)
   }
@@ -81,8 +85,9 @@
   &.show-bg-image {
     opacity: 1;
   }
-  .work-tease__link:hover & {
-    filter: grayscale(1);
+  .work-tease__link:hover &,
+  .work-tease__link:active & {
+    // filter: grayscale(1);
     transform: scale(1.05);
   }
 }

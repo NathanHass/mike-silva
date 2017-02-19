@@ -1,0 +1,22 @@
+
+    <section class="work-tease__grid">
+      <ul class="work-tease__list">
+        {% for item in 0..2 %}
+          {% for post in posts %}
+            <li class="work-tease">
+              <a href="{{ post.link }}" class="work-tease__link">
+                <div class="work-tease__img-mod">
+                  <div class="work-tease__bg-img">
+                    <img class="work-tease__img" src="{{ post.thumbnail.src|resize(380) }}" alt="{{ post.thumbnail.alt }}">
+                  </div>
+                </div>
+                <div class="work-tease__hgroup">
+                  <h2 class="work-tease__h">{{ post.title }}</h2>
+                </div>
+              </a>
+            </li>
+          {% endfor %}
+
+        {% endfor %}
+      </ul>
+    </section>

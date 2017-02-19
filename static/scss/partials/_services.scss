@@ -1,0 +1,161 @@
+.page__width {
+  color: currentColor;
+  padding: 30px;
+  @include mq($bp--desktop) {
+    padding-top:  80px;
+  }
+}
+
+.page__h {
+  color: currentColor;
+}
+
+.page__section-h {
+  color: currentColor;
+  margin-bottom: 15px;
+  @include font($sans, 15px, 700);
+}
+
+.page--services {
+  color: $color-orange;
+
+  .site-nav {
+    color: currentColor;
+  }
+}
+
+.page__width {
+  @include mq($bp--tablet-xl) {
+    display: flex;
+  }
+}
+
+.page__hgroup {
+  @include mq($bp--tablet-xl) {
+    min-width: 300px;
+  }
+}
+
+.page__content {
+  @include mq($bp--tablet-xl) {
+    min-width: calc(100% - 300px);
+  }
+}
+
+.page__content-block {
+  & + & {
+    border-top: 1px solid;
+    margin-top: 45px;
+    padding-top: 55px;
+  }
+}
+.page__content-block__width {
+  max-width: 750px;
+}
+
+.page--loop {
+  color: #fff;
+  background-color: $color-dark-green;
+}
+
+
+.page__content-block--intro {
+  @include font($sans, 20px, 400);
+
+  @include mq($bp--tablet) {
+    font-size: 28px;
+    font-weight: 300;
+  }
+}
+
+.page__bullet-list {
+  list-style: none;
+  margin-left: 0;
+  padding-left: 0;
+}
+
+.page__bullet-list__item {
+  display: inline;
+  @include font($sans, 20px, 400);
+
+  @include mq($bp--tablet) {
+    font-size: 28px;
+    font-weight: 300;
+  }
+
+  &::after {
+    display: inline;
+    padding: 0px 0.35em 0 0.6em;
+    content: '•';
+    vertical-align: middle;
+    font-size: 0.7em;
+  }
+
+  &:last-child::after {
+    display: none;
+  }
+}
+
+
+.loop__img-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+}
+
+.loop__img-list__item {
+  width: 32%;
+  margin-left: 2%;
+
+  &:first-child {
+    margin-left: 0;
+  }
+
+  img {
+    width: 100%;
+  }
+}
+
+.page__section-h__link {
+  text-decoration: none;
+}
+
+.page__section-h__site {
+  margin-left: .5em;
+  opacity: .5;
+  transition: all .3s;
+
+  .page__section-h__link:focus &,
+  .page__section-h__link:hover & {
+    opacity: 1;
+  }
+}
+
+$loop-size: 200px;
+
+.page--loop {
+  .page__content-block--intro {
+    position: relative;
+    margin-top: 50px;
+    margin-left: -20px;
+    background-color: $color-dark-green;
+    padding: 20px 0 0 20px;
+
+    &:before {
+      content: '';
+      width: $loop-size;
+      height: $loop-size;
+      border: 3px solid $color-mint;
+      border-radius: 50%;
+      z-index: -1;
+      @include absolute($loop-size*-.5 n n $loop-size*-.5);
+      opacity: .3;
+    }
+  }
+
+  .page__content-block {
+    border-color: $color-mint;
+  }
+}

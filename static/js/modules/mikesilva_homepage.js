@@ -16,6 +16,11 @@ function MikeSilvaHomepage() {
 *   Initialize homepage topper object
 */
 MikeSilvaHomepage.prototype.init = function() {
+    this.$topperTeases.each( function() {
+        var img = new Image();
+        img.src = this.dataset.image;
+    });
+
     if ( this.$topperImage.length > 0 ) {
         this.$topperImage
             .off()
@@ -36,16 +41,16 @@ MikeSilvaHomepage.prototype.init = function() {
 
     if ( this.$topperTeases.length > 0 ) {
 
-        this._getActiveTeaseData($('.js-hp-trigger')[0]);
+        // this._getActiveTeaseData($('.js-hp-trigger')[0]);
         this._setFeaturedTopper();
 
         if ( $( window ).width() >= 600) {
             $( document )
                 .off()
-                .on('mouseenter focus', '.js-hp-trigger' ,this._maybeUpdateActiveTeaseData.bind(this));
-            this.$featureImageArea
-                .off()
-                .on('oanimationend animationend webkitAnimationEnd', this._setFeaturedTopper.bind(this));
+                .on('mouseenter focus', '.js-hp-trigger' , this._maybeUpdateActiveTeaseData.bind(this));
+            // this.$featureImageArea
+            //     .off()
+            //     .on('oanimationend animationend webkitAnimationEnd', this._setFeaturedTopper.bind(this));
         }
     }
 };
@@ -73,6 +78,8 @@ MikeSilvaHomepage.prototype._maybeUpdateActiveTeaseData = function(evt) {
     if ( !evt.currentTarget.classList.contains('tease-is-active') ) {
         evt.currentTarget.focus();
         this._getActiveTeaseData(evt.currentTarget);
+        this._setFeaturedTopper();
+        $('body').addClass('teases-are-active');
     }
 };
 

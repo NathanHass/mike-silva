@@ -1,19 +1,24 @@
 .post-content {
-  background-color: $color-blue;
-  min-height: 100vh;
-  padding: 15px;
+  // background-color: $color-blue--bg;
+  // min-height: 100vh;
+  padding: 15px 15px 15px;
   overflow: hidden;
   @include mq($bp--tablet, $bp--desktop) {
-    padding: 30px;
+    padding: 15px 30px 30px;
   }
   @include mq($bp--desktop) {
-    padding: 50px;
+    padding: 15px 50px 50px;
   }
 }
 
+.single {
+  background-color: $color-blue--bg;
+}
+
 .post-content__width {
-  max-width: 1100px;
+  max-width: 950px;
   margin: 0 auto;
+  position: relative;
 }
 
 .post__video-mod {
@@ -31,4 +36,97 @@
 
 iframe .controls  {
   display: none !important;
+}
+
+
+.post__text-mod {
+  @include mq($bp--desktop) {
+    display: flex;
+  }
+  @include mq($bp--desktop, 1280px) {
+    width: calc(100% - 215px);
+  }
+}
+
+.post__hgroup {
+  @include mq($bp--desktop) {
+    min-width: 30%;
+    padding-right: 30px;
+  }
+}
+
+.post__h1 {
+  @include font($sans, 20px, 700);
+  line-height: 1.55;
+}
+
+.post__text {
+  @include mq($bp--desktop) {
+    min-width: 70%;
+  }
+}
+
+.post__h1 {
+  margin-bottom: 5px;
+}
+
+.post__meta {
+  margin-bottom: 0;
+  line-height: 1.2;
+  font-size: 16px;
+}
+
+.post__recirc {
+  padding-top: 30px;
+  background: #fff;
+}
+
+.post__video-mod--outer {
+  position: relative;
+}
+
+.post__btn-mod {
+  float: right;
+}
+
+.post__btn {
+  background-size: 33%;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  border: 1px solid;
+  // display: none;
+  width: 100px;
+  height: 40px;
+  transition: all .3s ease;
+  display: inline-block;
+
+  @include mq(1280px) {
+  }
+}
+
+.post__btn--prev {
+  background-image: url('../../img/arrow--prev.svg');
+  @include mq(1280px) {
+
+    @include absolute(50% n n 0);
+    transform: translate3d(calc(-100% - 50px), 0, 0);
+
+    &:hover,
+    &:focus {
+      transform: translate3d(calc(-100% - 50px), 0, 0), scale(1.1);
+    }
+
+  }
+}
+.post__btn--next {
+  background-image: url('../../img/arrow--next.svg');
+  @include mq(1280px) {
+    @include absolute(50% 0 n n);
+    transform: translate3d(calc(100% + 50px), 0, 0);
+
+    &:hover,
+    &:focus {
+      transform: translate3d(calc(100% + 50px), 0, 0)scale(1.1);
+    }
+  }
 }

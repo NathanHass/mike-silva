@@ -143,3 +143,9 @@ gulp.task('dev', function() {
 gulp.task('production', function() {
     runSequence('del', 'styles-production', 'scripts', 'admin-styles', 'modernizr');
 });
+
+
+/**
+*   Set default to dev
+*/
+gulp.task('default', [ 'dev' ]);

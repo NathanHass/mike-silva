@@ -1,4 +1,4 @@
-@mixin fluid-font-size($tween-start: 16px 400px, $tween-end: 100px 1400px, $use-mq: true) {
+@mixin fluid-font-size($tween-start: 16px 400px, $tween-end: 100px 1400px, $use-mq: false) {
   $min-size: nth($tween-start, 1);
   $max-size: nth($tween-end, 1);
   $min-width: nth($tween-start, 2);

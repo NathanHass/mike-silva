@@ -1,5 +1,4 @@
 import PageTrans from './modules/mikesilva_page_transition';
-import Gradient from './modules/mikesilva_gradient_polyfill';
 import Homepage from './modules/mikesilva_homepage';
 import Single from './modules/mikesilva_single';
 import $ from 'jquery';
@@ -22,8 +21,7 @@ var MikeSilva = {
     init: function() {
         this.modInstances = [
             new Homepage(),
-            new Single(),
-            new Gradient()
+            new Single()
         ];
 
         for ( let instance of this.modInstances ) {

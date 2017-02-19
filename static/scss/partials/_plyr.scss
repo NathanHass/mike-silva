@@ -272,7 +272,7 @@ $plyr-bp-screen-lg:                     1024px !default;
 // Video
 .plyr__video-wrapper {
     position: relative;
-    background: #fff;
+    background: #111;
     border-radius: inherit;
 }
 
@@ -486,7 +486,7 @@ $plyr-bp-screen-lg:                     1024px !default;
     left: 50%;
     transform: translate(-50%, -50%);
     padding: 23px;
-    background: $plyr-video-control-bg-hover;
+    background: rgba(0, 0, 0, .2);
     border: 1px solid currentColor;
     border-radius: 100%;
     box-shadow: 0 1px 1px transparentize($color-black, .85);
@@ -502,8 +502,10 @@ $plyr-bp-screen-lg:                     1024px !default;
         fill: currentColor;
     }
 
+    &:hover,
     &:focus {
-        outline: 1px dotted transparentize($plyr-video-control-color, .5);
+        outline: none;
+        transform: translate(-50%, -50%) scale(1.1);
     }
 }
 .plyr .plyr__play-large {

@@ -4,11 +4,36 @@
 	<div class="page-wrapper">
 		<section class="post-content">
 			<div class="post-content__width">
-				<div class="post__video-mod js-player" data-type="vimeo" data-video-id="{{post.video_id}}"></div>
-				<div class="post__text-mod">
-					<h1 class="post-h1">{{post.title}}</h1>
+				<div class="post__video-mod--outer">
+					<div class="post__video-mod js-player" data-type="vimeo" data-video-id="{{post.video_id}}"></div>
+					<div class="post__btn-mod">
+						<a href="{{prev_post.link}}" class="post__btn post__btn--prev"></a>
+						<a href="{{next_post.link}}" class="post__btn post__btn--next"></a>
+					</div>
 				</div>
+
+				<div class="post__text-mod">
+					<div class="post__hgroup">
+						<h1 class="post__h1">{{post.title}}</h1>
+						{% if post.role %}
+							<p class="post__meta post__meta--role"><span class="post__meta__label">Role:</span>	{{post.role}}</p>
+						{% endif %}
+						{% if post.client_name %}
+							<p class="post__meta post__meta--client"><span class="post__meta__label">Client:</span> {{post.client_name}}</p>
+						{% endif %}
+					</div>
+					{% if post.content %}
+						<div class="post__text">
+							{{post.content}}
+						</div>
+					{% endif %}
+				</div>
+
 			</div>
 		</section>
+		<div class="post__recirc">
+			{% include "grid.twig" %}
+
+		</div>
 	</div><!-- /page-wrapper -->
 {% endblock %}

@@ -10,3 +10,4 @@ if ( ! class_exists( 'Timber' ) ) {
 Timber::$dirname = array('templates', 'views');
 
 require_once('lib/class-ms-site.php');
+require_once('lib/class-ms-article.php');

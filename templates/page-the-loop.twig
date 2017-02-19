@@ -1,0 +1,46 @@
+{% extends "base.twig" %}
+
+{% block body_class %} page--loop{% endblock %}
+
+{% block content %}
+  <div class="page__width">
+    <section class="page__hgroup">
+      <h2 class="page__h">{{post.title}}</h2>
+    </section>
+    <section class="page__content">
+
+      <div class="page__content-block page__content-block--intro">
+        <div class="page__content-block__width">
+          {{post.content}}
+        </div>
+      </div>
+
+      {% for member in post.get_field('member') %}
+
+          <div class="page__content-block page__content-block--loop">
+            <div class="page__content-block__width">
+               <h3 class="page__section-h">
+                {% if member.website %}
+                  <a class="page__section-h__link" href="{{member.website}}" target="_blank">{{member.name}}<span class="page__section-h__site">See Work</span></a>
+                {% else %}
+                  {{member.name}}
+                {% endif %}
+               </h3>
+              <div class="loop__desc">
+                {{member.description}}
+              </div>
+            </div>
+
+             <ul class="loop__img-list">
+             {% for image in member.images %}
+                <li class="loop__img-list__item">
+
+                  <img src="{{image.image.url}}" alt="{{image.image.alt}}">
+                </li>
+             {% endfor %}
+            </ul>
+        </div>
+      {% endfor %}
+    </section>
+  </div>
+{% endblock %}

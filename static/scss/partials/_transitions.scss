@@ -1,36 +1,115 @@
-
-@keyframes pageTransitionOut {
-  0% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-  }
-}
-
 @keyframes pageTransitionIn {
   0% {
+    transform: translate3D(-100%, 0, 0);
+    // opacity: 0;
+  }
+  100% {
+    transform: translate3D(0, 0, 0);
+    opacity: 1;
+  }
+}
+@keyframes pageTransitionOut {
+  0% {
+    transform: translate3D(0, 0, 0);
+    opacity: 1;
+  }
+  100% {
+    transform: translate3D(100%, 0, 0);
+    // opacity: 0;
+  }
+}
+
+#js-smoothstate-container {
+  // background: #111;
+  &:before {
+    content: '';
+    @include fixed(0);
+    display: block;
+    background-color: blue;
+
+    transform: scaleX(0);
+    z-index: 999;
+    transition: all .3s;
+
+    .page--services & {
+      background-color: $color-spot;
+    }
+
+    .home & {
+      background-color: $color-dark-green;
+    }
+
+    .page--loop & {
+      background-color: $color-mint;
+    }
+  }
+
+  &.is-exiting:before {
+    animation: pageTransitionIn .5s forwards .2s;
+  }
+
+
+  &.has-exited:before {
+    animation: pageTransitionOut .5s forwards;
+  }
+
+  &:after {
+    content: '';
+    @include fixed(0);
+    display: block;
+    z-index: 999;
+    transition: all .3s;
+    background-image: url('../../img/transition-logo.svg');
+    background-size: 100px;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    pointer-events: none;
+    opacity: 0;
+  }
+
+  &.is-exiting:after {
+    opacity: 1;
+    transition-delay: .3s;
+  }
+  &.has-exited:after {
+    opacity: 0
+  }
+
+}
+
+@keyframes contentIn {
+  0% {
+    // transform: scale(1.1);
     opacity: 0;
   }
   100% {
+    // transform: scale(1);
     opacity: 1;
   }
 }
 
+@keyframes contentOut {
+  0% {
+    // transform: scale(1);
+    opacity: 1;
+  }
+  100% {
+    // transform: scale(.9);
+    opacity: 0;
+  }
+}
 
 .content-wrapper {
-  // opacity: 1;
-
+  padding-top: 86px;
   transition: all .3s ease;
 
+
   .is-exiting & {
-    opacity: 0;
-    pointer-events: none;
+    animation: contentOut .5s forwards;
   }
 
   .has-exited & {
-    opacity: 0;
-    animation: pageTransitionIn .95s forwards;
+    opacity: 1;
   }
 }
 

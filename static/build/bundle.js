@@ -75,15 +75,11 @@
 
 	var _mikesilva_page_transition2 = _interopRequireDefault(_mikesilva_page_transition);
 
-	var _mikesilva_gradient_polyfill = __webpack_require__(6);
-
-	var _mikesilva_gradient_polyfill2 = _interopRequireDefault(_mikesilva_gradient_polyfill);
-
-	var _mikesilva_homepage = __webpack_require__(8);
+	var _mikesilva_homepage = __webpack_require__(6);
 
 	var _mikesilva_homepage2 = _interopRequireDefault(_mikesilva_homepage);
 
-	var _mikesilva_single = __webpack_require__(10);
+	var _mikesilva_single = __webpack_require__(8);
 
 	var _mikesilva_single2 = _interopRequireDefault(_mikesilva_single);
 
@@ -108,7 +104,7 @@
 	    *   Initialize js modules
 	    */
 	    init: function init() {
-	        this.modInstances = [new _mikesilva_homepage2.default(), new _mikesilva_single2.default(), new _mikesilva_gradient_polyfill2.default()];
+	        this.modInstances = [new _mikesilva_homepage2.default(), new _mikesilva_single2.default()];
 
 	        var _iteratorNormalCompletion = true;
 	        var _didIteratorError = false;
@@ -179,10 +175,10 @@
 	            render: this._transitionStart
 	        },
 	        onReady: {
-	            duration: 0,
+	            duration: 600,
 	            render: this._transitionReady.bind(this)
 	        },
-	        onAfter: this._transitionAfter
+	        onAfter: this._transitionAfter.bind(this)
 	    };
 
 	    this.smoothState = (0, _jquery2.default)('#js-smoothstate-container').smoothState(options).data('smoothState');
@@ -210,10 +206,7 @@
 	*   @param  jQuery Obj $currentTarget   The target of the click event, provided by the smoothState object
 	*   @param  jQuery Obj $newContent      The new content loaded from the clicked link, provided by the smoothState object
 	*/
-	MikeSilvaPageTransition.prototype._transitionReady = function ($container, $newContent) {
-	    $container.html($newContent);
-	    this._addBodyClasses();
-	};
+	MikeSilvaPageTransition.prototype._transitionReady = function ($container, $newContent) {};
 
 	/**
 	*   Once the DOM has been loaded, re-init the js objects
@@ -221,6 +214,10 @@
 	*   @param  jQuery Obj $newContent      The new content loaded from the clicked link, provided by the smoothState object
 	*/
 	MikeSilvaPageTransition.prototype._transitionAfter = function ($container, $newContent) {
+	    $container.html($newContent);
+
+	    this._addBodyClasses();
+
 	    _mikesilva2.default.init();
 	    $container.removeClass('is-exiting').addClass('has-exited');
 	};
@@ -233,6 +230,7 @@
 	    var doc = void 0,
 	        matches = void 0,
 	        classes = void 0;
+	    // debugger;
 
 	    if (stateURL in this.smoothState.cache) {
 	        // Smooth state stores the full HTML document string in the `doc` property of the cached page object.
@@ -1145,853 +1143,11 @@
 	    value: true
 	});
 
-	var _prefixfree = __webpack_require__(7);
-
-	var _prefixfree2 = _interopRequireDefault(_prefixfree);
-
 	var _jquery = __webpack_require__(3);
 
 	var _jquery2 = _interopRequireDefault(_jquery);
 
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function MikeSilvaGradient() {}
-
-	MikeSilvaGradient.prototype.init = function () {
-	    this._allowConicGradient();
-	    this._hideContentUntilLoaded();
-	};
-
-	MikeSilvaGradient.prototype._hideContentUntilLoaded = function () {
-	    var prevTime = new Date();
-	    var minLoadingDuration = 3000;
-	    var $body = (0, _jquery2.default)('body');
-	    (0, _jquery2.default)('.hp__img').load(function () {
-	        if ($body.hasClass('home')) {
-	            var thisTime = new Date();
-	            var diff = thisTime.getTime() - prevTime.getTime();
-	            console.log(minLoadingDuration);
-	            if (diff >= minLoadingDuration) {
-	                console.log('no delay');
-	                $body.addClass('display-hp-content');
-	            } else {
-	                setTimeout(function () {
-	                    console.log('delay');
-	                    console.log(minLoadingDuration);
-	                    $body.addClass('display-hp-content');
-	                }, minLoadingDuration - diff);
-	            }
-	        }
-	    });
-	};
-
-	/**
-	*   Set smoothState options and apply to the smoothState container
-	*/
-	MikeSilvaGradient.prototype._allowConicGradient = function () {
-	    /**
-	     * CSS conic-gradient() polyfill
-	     * By Lea Verou — http://lea.verou.me
-	     * MIT license
-	     */
-
-	    var π = Math.PI;
-	    var τ = 2 * π;
-	    var ε = .00001;
-	    var deg = π / 180;
-
-	    var dummy = document.createElement("div");
-	    document.head.appendChild(dummy);
-
-	    var _ = self.ConicGradient = function (o) {
-	        var me = this;
-	        _.all.push(this);
-
-	        o = o || {};
-
-	        this.canvas = document.createElement("canvas");
-	        this.context = this.canvas.getContext("2d");
-
-	        this.repeating = !!o.repeating;
-
-	        this.size = o.size || Math.max(innerWidth, innerHeight);
-
-	        this.canvas.width = this.canvas.height = this.size;
-
-	        var stops = o.stops;
-
-	        this.stops = (stops || "").split(/\s*,(?![^(]*\))\s*/); // commas that are not followed by a ) without a ( first
-
-	        for (var i = 0; i < this.stops.length; i++) {
-	            if (this.stops[i]) {
-	                var stop = this.stops[i] = new _.ColorStop(this, this.stops[i]);
-
-	                if (stop.next) {
-	                    this.stops.splice(i + 1, 0, stop.next);
-	                    i++;
-	                }
-	            } else {
-	                this.stops.splice(i, 1);
-	                i--;
-	            }
-	        }
-
-	        // Normalize stops
-
-	        // Add dummy first stop or set first stop’s position to 0 if it doesn’t have one
-	        if (this.stops[0].pos === undefined) {
-	            this.stops[0].pos = 0;
-	        } else if (this.stops[0].pos > 0) {
-	            var first = this.stops[0].clone();
-	            first.pos = 0;
-	            this.stops.unshift(first);
-	        }
-
-	        // Add dummy last stop or set first stop’s position to 100% if it doesn’t have one
-	        if (this.stops[this.stops.length - 1].pos === undefined) {
-	            this.stops[this.stops.length - 1].pos = 1;
-	        } else if (!this.repeating && this.stops[this.stops.length - 1].pos < 1) {
-	            var last = this.stops[this.stops.length - 1].clone();
-	            last.pos = 1;
-	            this.stops.push(last);
-	        }
-
-	        this.stops.forEach(function (stop, i) {
-	            if (stop.pos === undefined) {
-	                // Evenly space color stops with no position
-	                for (var j = i + 1; this[j]; j++) {
-	                    if (this[j].pos !== undefined) {
-	                        stop.pos = this[i - 1].pos + (this[j].pos - this[i - 1].pos) / (j - i + 1);
-	                        break;
-	                    }
-	                }
-	            } else if (i > 0) {
-	                // Normalize color stops whose position is smaller than the position of the stop before them
-	                stop.pos = Math.max(stop.pos, this[i - 1].pos);
-	            }
-	        }, this.stops);
-
-	        if (this.repeating) {
-	            // Repeat color stops until >= 1
-	            var stops = this.stops.slice();
-	            var lastStop = stops[stops.length - 1];
-	            var difference = lastStop.pos - stops[0].pos;
-
-	            for (var i = 0; this.stops[this.stops.length - 1].pos < 1 && i < 10000; i++) {
-	                for (var j = 0; j < stops.length; j++) {
-	                    var s = stops[j].clone();
-	                    s.pos += (i + 1) * difference;
-
-	                    this.stops.push(s);
-	                }
-	            }
-	        }
-
-	        this.paint();
-	    };
-
-	    _.all = [];
-
-	    _.prototype = {
-	        toString: function toString() {
-	            return "url('" + this.dataURL + "')";
-	        },
-
-	        get dataURL() {
-	            return "data:image/svg+xml," + this.svg;
-	        },
-
-	        get blobURL() {
-	            // Warning: Flicker when updating due to slow blob: URL resolution :(
-	            // TODO cache this and only update it when color stops change
-	            return URL.createObjectURL(new Blob([this.svg], { type: "image/svg+xml" }));
-	        },
-
-	        get svg() {
-	            return '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="none">' + '<svg viewBox="0 0 100 100" preserveAspectRatio="xMidYMid slice">' + '<image width="100" height="100%" xlink:href="' + this.png + '" /></svg></svg>';
-	        },
-
-	        get png() {
-	            return this.canvas.toDataURL();
-	        },
-
-	        get r() {
-	            return Math.sqrt(2) * this.size / 2;
-	        },
-
-	        // Paint the conical gradient on the canvas
-	        // Algorithm inspired from http://jsdo.it/akm2/yr9B
-	        paint: function paint() {
-	            var c = this.context;
-
-	            var radius = this.r;
-	            var x = this.size / 2;
-
-	            var stopIndex = 0; // The index of the current color
-	            var stop = this.stops[stopIndex],
-	                prevStop;
-
-	            var diff, t;
-
-	            // Transform coordinate system so that angles start from the top left, like in CSS
-	            c.translate(this.size / 2, this.size / 2);
-	            c.rotate(-90 * deg);
-	            c.translate(-this.size / 2, -this.size / 2);
-
-	            for (var i = 0; i < 360; i += .5) {
-	                if (i / 360 + ε >= stop.pos) {
-	                    // Switch color stop
-	                    do {
-	                        prevStop = stop;
-
-	                        stopIndex++;
-	                        stop = this.stops[stopIndex];
-	                    } while (stop && stop != prevStop && stop.pos === prevStop.pos);
-
-	                    if (!stop) {
-	                        break;
-	                    }
-
-	                    var sameColor = prevStop.color + "" === stop.color + "" && prevStop != stop;
-
-	                    diff = prevStop.color.map(function (c, i) {
-	                        return stop.color[i] - c;
-	                    });
-	                }
-
-	                t = (i / 360 - prevStop.pos) / (stop.pos - prevStop.pos);
-
-	                var interpolated = sameColor ? stop.color : diff.map(function (d, i) {
-	                    var ret = d * t + prevStop.color[i];
-
-	                    return i < 3 ? ret & 255 : ret;
-	                });
-
-	                // Draw a series of arcs, 1deg each
-	                c.fillStyle = 'rgba(' + interpolated.join(",") + ')';
-	                c.beginPath();
-	                c.moveTo(x, x);
-
-	                var angle = Math.min(360 * deg, i * deg);
-
-	                if (sameColor) {
-	                    var θ = 360 * (stop.pos - prevStop.pos);
-
-	                    i += θ - .5;
-	                } else {
-	                    var θ = .5;
-	                }
-
-	                var endAngle = angle + θ * deg;
-
-	                endAngle = Math.min(360 * deg, endAngle);
-
-	                // 0.02: To prevent moire
-	                var arc = endAngle - angle;
-	                c.arc(x, x, radius, arc >= 2 * deg ? angle : angle - .02, endAngle);
-
-	                c.closePath();
-	                c.fill();
-	            }
-	        }
-	    };
-
-	    _.ColorStop = function (gradient, stop) {
-	        this.gradient = gradient;
-
-	        if (stop) {
-	            var parts = stop.match(/^(.+?)(?:\s+([\d.]+)(%|deg|turn)?)?(?:\s+([\d.]+)(%|deg|turn)?)?\s*$/);
-
-	            this.color = _.ColorStop.colorToRGBA(parts[1]);
-
-	            if (parts[2]) {
-	                var unit = parts[3];
-
-	                if (unit == "%" || parts[2] === "0" && !unit) {
-	                    this.pos = parts[2] / 100;
-	                } else if (unit == "turn") {
-	                    this.pos = +parts[2];
-	                } else if (unit == "deg") {
-	                    this.pos = parts[2] / 360;
-	                }
-	            }
-
-	            if (parts[4]) {
-	                this.next = new _.ColorStop(gradient, parts[1] + " " + parts[4] + parts[5]);
-	            }
-	        }
-	    };
-
-	    _.ColorStop.prototype = {
-	        clone: function clone() {
-	            var ret = new _.ColorStop(this.gradient);
-	            ret.color = this.color;
-	            ret.pos = this.pos;
-
-	            return ret;
-	        },
-
-	        toString: function toString() {
-	            return "rgba(" + this.color.join(", ") + ") " + this.pos * 100 + "%";
-	        }
-	    };
-
-	    _.ColorStop.colorToRGBA = function (color) {
-	        if (!Array.isArray(color)) {
-	            dummy.style.color = color;
-
-	            var rgba = getComputedStyle(dummy).color.match(/rgba?\(([\d.]+), ([\d.]+), ([\d.]+)(?:, ([\d.]+))?\)/);
-
-	            if (rgba) {
-	                rgba.shift();
-	                rgba = rgba.map(function (a) {
-	                    return +a;
-	                });
-	                rgba[3] = isNaN(rgba[3]) ? 1 : rgba[3];
-	            }
-
-	            return rgba || [0, 0, 0, 0];
-	        }
-
-	        return color;
-	    };
-
-	    if (self.StyleFix) {
-	        // Test if conic gradients are supported first:
-	        (function () {
-	            var dummy = document.createElement("p");
-	            dummy.style.backgroundImage = "conic-gradient(white, black)";
-	            dummy.style.backgroundImage = _prefixfree2.default.prefix + "conic-gradient(white, black)";
-
-	            if (!dummy.style.backgroundImage) {
-	                // Not supported, use polyfill
-	                StyleFix.register(function (css, raw) {
-	                    if (css.indexOf("conic-gradient") > -1) {
-	                        css = css.replace(/(?:repeating-)?conic-gradient\(\s*((?:\([^()]+\)|[^;()}])+?)\)/g, function (gradient, stops) {
-	                            return new ConicGradient({
-	                                stops: stops,
-	                                repeating: gradient.indexOf("repeating-") > -1
-	                            });
-	                        });
-	                    }
-
-	                    return css;
-	                });
-	            }
-	        })();
-	    }
-	};
-
-	exports.default = MikeSilvaGradient;
-
-/***/ },
-/* 7 */
-/***/ function(module, exports) {
-
-	'use strict';
-
-	/**
-	 * StyleFix 1.0.3 & PrefixFree 1.0.7
-	 * @author Lea Verou
-	 * MIT license
-	 */
-
-	(function () {
-
-		if (!window.addEventListener) {
-			return;
-		}
-
-		var self = window.StyleFix = {
-			link: function link(_link) {
-				try {
-					// Ignore stylesheets with data-noprefix attribute as well as alternate stylesheets
-					if (_link.rel !== 'stylesheet' || _link.hasAttribute('data-noprefix')) {
-						return;
-					}
-				} catch (e) {
-					return;
-				}
-
-				var url = _link.href || _link.getAttribute('data-href'),
-				    base = url.replace(/[^\/]+$/, ''),
-				    base_scheme = (/^[a-z]{3,10}:/.exec(base) || [''])[0],
-				    base_domain = (/^[a-z]{3,10}:\/\/[^\/]+/.exec(base) || [''])[0],
-				    base_query = /^([^?]*)\??/.exec(url)[1],
-				    parent = _link.parentNode,
-				    xhr = new XMLHttpRequest(),
-				    process;
-
-				xhr.onreadystatechange = function () {
-					if (xhr.readyState === 4) {
-						process();
-					}
-				};
-
-				process = function process() {
-					var css = xhr.responseText;
-
-					if (css && _link.parentNode && (!xhr.status || xhr.status < 400 || xhr.status > 600)) {
-						css = self.fix(css, true, _link);
-
-						// Convert relative URLs to absolute, if needed
-						if (css && base) {
-							css = css.replace(/url\(\s*?((?:"|')?)(.+?)\1\s*?\)/gi, function ($0, quote, url) {
-								if (/^([a-z]{3,10}:|#)/i.test(url)) {
-									// Absolute & or hash-relative
-									return $0;
-								} else if (/^\/\//.test(url)) {
-									// Scheme-relative
-									// May contain sequences like /../ and /./ but those DO work
-									return 'url("' + base_scheme + url + '")';
-								} else if (/^\//.test(url)) {
-									// Domain-relative
-									return 'url("' + base_domain + url + '")';
-								} else if (/^\?/.test(url)) {
-									// Query-relative
-									return 'url("' + base_query + url + '")';
-								} else {
-									// Path-relative
-									return 'url("' + base + url + '")';
-								}
-							});
-
-							// behavior URLs shoudn’t be converted (Issue #19)
-							// base should be escaped before added to RegExp (Issue #81)
-							var escaped_base = base.replace(/([\\\^\$*+[\]?{}.=!:(|)])/g, "\\$1");
-							css = css.replace(RegExp('\\b(behavior:\\s*?url\\(\'?"?)' + escaped_base, 'gi'), '$1');
-						}
-
-						var style = document.createElement('style');
-						style.textContent = css;
-						style.media = _link.media;
-						style.disabled = _link.disabled;
-						style.setAttribute('data-href', _link.getAttribute('href'));
-
-						if (_link.id) style.id = _link.id;
-
-						parent.insertBefore(style, _link);
-						parent.removeChild(_link);
-
-						style.media = _link.media; // Duplicate is intentional. See issue #31
-					}
-				};
-
-				try {
-					xhr.open('GET', url);
-					xhr.send(null);
-				} catch (e) {
-					// Fallback to XDomainRequest if available
-					if (typeof XDomainRequest != "undefined") {
-						xhr = new XDomainRequest();
-						xhr.onerror = xhr.onprogress = function () {};
-						xhr.onload = process;
-						xhr.open("GET", url);
-						xhr.send(null);
-					}
-				}
-
-				_link.setAttribute('data-inprogress', '');
-			},
-
-			styleElement: function styleElement(style) {
-				if (style.hasAttribute('data-noprefix')) {
-					return;
-				}
-				var disabled = style.disabled;
-
-				style.textContent = self.fix(style.textContent, true, style);
-
-				style.disabled = disabled;
-			},
-
-			styleAttribute: function styleAttribute(element) {
-				var css = element.getAttribute('style');
-
-				css = self.fix(css, false, element);
-
-				element.setAttribute('style', css);
-			},
-
-			process: function process() {
-				// Linked stylesheets
-				$('link[rel="stylesheet"]:not([data-inprogress])').forEach(StyleFix.link);
-
-				// Inline stylesheets
-				$('style').forEach(StyleFix.styleElement);
-
-				// Inline styles
-				$('[style]').forEach(StyleFix.styleAttribute);
-			},
-
-			register: function register(fixer, index) {
-				(self.fixers = self.fixers || []).splice(index === undefined ? self.fixers.length : index, 0, fixer);
-			},
-
-			fix: function fix(css, raw, element) {
-				if (self.fixers) {
-					for (var i = 0; i < self.fixers.length; i++) {
-						css = self.fixers[i](css, raw, element) || css;
-					}
-				}
-
-				return css;
-			},
-
-			camelCase: function camelCase(str) {
-				return str.replace(/-([a-z])/g, function ($0, $1) {
-					return $1.toUpperCase();
-				}).replace('-', '');
-			},
-
-			deCamelCase: function deCamelCase(str) {
-				return str.replace(/[A-Z]/g, function ($0) {
-					return '-' + $0.toLowerCase();
-				});
-			}
-		};
-
-		/**************************************
-	  * Process styles
-	  **************************************/
-		(function () {
-			setTimeout(function () {
-				$('link[rel="stylesheet"]').forEach(StyleFix.link);
-			}, 10);
-
-			document.addEventListener('DOMContentLoaded', StyleFix.process, false);
-		})();
-
-		function $(expr, con) {
-			return [].slice.call((con || document).querySelectorAll(expr));
-		}
-	})();
-
-	/**
-	 * PrefixFree
-	 */
-	(function (root) {
-
-		if (!window.StyleFix || !window.getComputedStyle) {
-			return;
-		}
-
-		// Private helper
-		function fix(what, before, after, replacement, css) {
-			what = self[what];
-
-			if (what.length) {
-				var regex = RegExp(before + '(' + what.join('|') + ')' + after, 'gi');
-
-				css = css.replace(regex, replacement);
-			}
-
-			return css;
-		}
-
-		var self = window.PrefixFree = {
-			prefixCSS: function prefixCSS(css, raw, element) {
-				var prefix = self.prefix;
-
-				// Gradient angles hotfix
-				if (self.functions.indexOf('linear-gradient') > -1) {
-					// Gradients are supported with a prefix, convert angles to legacy
-					css = css.replace(/(\s|:|,)(repeating-)?linear-gradient\(\s*(-?\d*\.?\d*)deg/ig, function ($0, delim, repeating, deg) {
-						return delim + (repeating || '') + 'linear-gradient(' + (90 - deg) + 'deg';
-					});
-				}
-
-				css = fix('functions', '(\\s|:|,)', '\\s*\\(', '$1' + prefix + '$2(', css);
-				css = fix('keywords', '(\\s|:)', '(\\s|;|\\}|$)', '$1' + prefix + '$2$3', css);
-				css = fix('properties', '(^|\\{|\\s|;)', '\\s*:', '$1' + prefix + '$2:', css);
-
-				// Prefix properties *inside* values (issue #8)
-				if (self.properties.length) {
-					var regex = RegExp('\\b(' + self.properties.join('|') + ')(?!:)', 'gi');
-
-					css = fix('valueProperties', '\\b', ':(.+?);', function ($0) {
-						return $0.replace(regex, prefix + "$1");
-					}, css);
-				}
-
-				if (raw) {
-					css = fix('selectors', '', '\\b', self.prefixSelector, css);
-					css = fix('atrules', '@', '\\b', '@' + prefix + '$1', css);
-				}
-
-				// Fix double prefixing
-				css = css.replace(RegExp('-' + prefix, 'g'), '-');
-
-				// Prefix wildcard
-				css = css.replace(/-\*-(?=[a-z]+)/gi, self.prefix);
-
-				return css;
-			},
-
-			property: function property(_property) {
-				return (self.properties.indexOf(_property) >= 0 ? self.prefix : '') + _property;
-			},
-
-			value: function value(_value, property) {
-				_value = fix('functions', '(^|\\s|,)', '\\s*\\(', '$1' + self.prefix + '$2(', _value);
-				_value = fix('keywords', '(^|\\s)', '(\\s|$)', '$1' + self.prefix + '$2$3', _value);
-
-				if (self.valueProperties.indexOf(property) >= 0) {
-					_value = fix('properties', '(^|\\s|,)', '($|\\s|,)', '$1' + self.prefix + '$2$3', _value);
-				}
-
-				return _value;
-			},
-
-			// Warning: Prefixes no matter what, even if the selector is supported prefix-less
-			prefixSelector: function prefixSelector(selector) {
-				return selector.replace(/^:{1,2}/, function ($0) {
-					return $0 + self.prefix;
-				});
-			},
-
-			// Warning: Prefixes no matter what, even if the property is supported prefix-less
-			prefixProperty: function prefixProperty(property, camelCase) {
-				var prefixed = self.prefix + property;
-
-				return camelCase ? StyleFix.camelCase(prefixed) : prefixed;
-			}
-		};
-
-		/**************************************
-	  * Properties
-	  **************************************/
-		(function () {
-			var prefixes = {},
-			    properties = [],
-			    shorthands = {},
-			    style = getComputedStyle(document.documentElement, null),
-			    dummy = document.createElement('div').style;
-
-			// Why are we doing this instead of iterating over properties in a .style object? Cause Webkit won't iterate over those.
-			var iterate = function iterate(property) {
-				if (property.charAt(0) === '-') {
-					properties.push(property);
-
-					var parts = property.split('-'),
-					    prefix = parts[1];
-
-					// Count prefix uses
-					prefixes[prefix] = ++prefixes[prefix] || 1;
-
-					// This helps determining shorthands
-					while (parts.length > 3) {
-						parts.pop();
-
-						var shorthand = parts.join('-');
-
-						if (supported(shorthand) && properties.indexOf(shorthand) === -1) {
-							properties.push(shorthand);
-						}
-					}
-				}
-			},
-			    supported = function supported(property) {
-				return StyleFix.camelCase(property) in dummy;
-			};
-
-			// Some browsers have numerical indices for the properties, some don't
-			if (style && style.length > 0) {
-				for (var i = 0; i < style.length; i++) {
-					iterate(style[i]);
-				}
-			} else {
-				for (var property in style) {
-					iterate(StyleFix.deCamelCase(property));
-				}
-			}
-
-			// Find most frequently used prefix
-			var highest = { uses: 0 };
-			for (var prefix in prefixes) {
-				var uses = prefixes[prefix];
-
-				if (highest.uses < uses) {
-					highest = { prefix: prefix, uses: uses };
-				}
-			}
-
-			self.prefix = '-' + highest.prefix + '-';
-			self.Prefix = StyleFix.camelCase(self.prefix);
-
-			self.properties = [];
-
-			// Get properties ONLY supported with a prefix
-			for (var i = 0; i < properties.length; i++) {
-				var property = properties[i];
-
-				if (property.indexOf(self.prefix) === 0) {
-					// we might have multiple prefixes, like Opera
-					var unprefixed = property.slice(self.prefix.length);
-
-					if (!supported(unprefixed)) {
-						self.properties.push(unprefixed);
-					}
-				}
-			}
-
-			// IE fix
-			if (self.Prefix == 'Ms' && !('transform' in dummy) && !('MsTransform' in dummy) && 'msTransform' in dummy) {
-				self.properties.push('transform', 'transform-origin');
-			}
-
-			self.properties.sort();
-		})();
-
-		/**************************************
-	  * Values
-	  **************************************/
-		(function () {
-			// Values that might need prefixing
-			var functions = {
-				'linear-gradient': {
-					property: 'backgroundImage',
-					params: 'red, teal'
-				},
-				'calc': {
-					property: 'width',
-					params: '1px + 5%'
-				},
-				'element': {
-					property: 'backgroundImage',
-					params: '#foo'
-				},
-				'cross-fade': {
-					property: 'backgroundImage',
-					params: 'url(a.png), url(b.png), 50%'
-				}
-			};
-
-			functions['repeating-linear-gradient'] = functions['repeating-radial-gradient'] = functions['radial-gradient'] = functions['linear-gradient'];
-
-			// Note: The properties assigned are just to *test* support. 
-			// The keywords will be prefixed everywhere.
-			var keywords = {
-				'initial': 'color',
-				'zoom-in': 'cursor',
-				'zoom-out': 'cursor',
-				'box': 'display',
-				'flexbox': 'display',
-				'inline-flexbox': 'display',
-				'flex': 'display',
-				'inline-flex': 'display',
-				'grid': 'display',
-				'inline-grid': 'display',
-				'max-content': 'width',
-				'min-content': 'width',
-				'fit-content': 'width',
-				'fill-available': 'width'
-			};
-
-			self.functions = [];
-			self.keywords = [];
-
-			var style = document.createElement('div').style;
-
-			function supported(value, property) {
-				style[property] = '';
-				style[property] = value;
-
-				return !!style[property];
-			}
-
-			for (var func in functions) {
-				var test = functions[func],
-				    property = test.property,
-				    value = func + '(' + test.params + ')';
-
-				if (!supported(value, property) && supported(self.prefix + value, property)) {
-					// It's supported, but with a prefix
-					self.functions.push(func);
-				}
-			}
-
-			for (var keyword in keywords) {
-				var property = keywords[keyword];
-
-				if (!supported(keyword, property) && supported(self.prefix + keyword, property)) {
-					// It's supported, but with a prefix
-					self.keywords.push(keyword);
-				}
-			}
-		})();
-
-		/**************************************
-	  * Selectors and @-rules
-	  **************************************/
-		(function () {
-
-			var selectors = {
-				':read-only': null,
-				':read-write': null,
-				':any-link': null,
-				'::selection': null
-			},
-			    atrules = {
-				'keyframes': 'name',
-				'viewport': null,
-				'document': 'regexp(".")'
-			};
-
-			self.selectors = [];
-			self.atrules = [];
-
-			var style = root.appendChild(document.createElement('style'));
-
-			function supported(selector) {
-				style.textContent = selector + '{}'; // Safari 4 has issues with style.innerHTML
-
-				return !!style.sheet.cssRules.length;
-			}
-
-			for (var selector in selectors) {
-				var test = selector + (selectors[selector] ? '(' + selectors[selector] + ')' : '');
-
-				if (!supported(test) && supported(self.prefixSelector(test))) {
-					self.selectors.push(selector);
-				}
-			}
-
-			for (var atrule in atrules) {
-				var test = atrule + ' ' + (atrules[atrule] || '');
-
-				if (!supported('@' + test) && supported('@' + self.prefix + test)) {
-					self.atrules.push(atrule);
-				}
-			}
-
-			root.removeChild(style);
-		})();
-
-		// Properties that accept properties as their value
-		self.valueProperties = ['transition', 'transition-property'];
-
-		// Add class for current prefix
-		root.className += ' ' + self.prefix;
-
-		StyleFix.register(self.prefixCSS);
-	})(document.documentElement);
-
-/***/ },
-/* 8 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-
-	var _jquery = __webpack_require__(3);
-
-	var _jquery2 = _interopRequireDefault(_jquery);
-
-	var _mikesilva_utilities = __webpack_require__(9);
+	var _mikesilva_utilities = __webpack_require__(7);
 
 	var _mikesilva_utilities2 = _interopRequireDefault(_mikesilva_utilities);
 
@@ -2010,6 +1166,11 @@
 	*   Initialize homepage topper object
 	*/
 	MikeSilvaHomepage.prototype.init = function () {
+	    this.$topperTeases.each(function () {
+	        var img = new Image();
+	        img.src = this.dataset.image;
+	    });
+
 	    if (this.$topperImage.length > 0) {
 	        this.$topperImage.off().on('load', _mikesilva_utilities2.default.swapImage.bind(this, this.$topperImage)).each(_mikesilva_utilities2.default.maybeUseCachedImage.bind(this, this.$topperImage));
 	    }
@@ -2025,12 +1186,14 @@
 
 	    if (this.$topperTeases.length > 0) {
 
-	        this._getActiveTeaseData((0, _jquery2.default)('.js-hp-trigger')[0]);
+	        // this._getActiveTeaseData($('.js-hp-trigger')[0]);
 	        this._setFeaturedTopper();
 
 	        if ((0, _jquery2.default)(window).width() >= 600) {
 	            (0, _jquery2.default)(document).off().on('mouseenter focus', '.js-hp-trigger', this._maybeUpdateActiveTeaseData.bind(this));
-	            this.$featureImageArea.off().on('oanimationend animationend webkitAnimationEnd', this._setFeaturedTopper.bind(this));
+	            // this.$featureImageArea
+	            //     .off()
+	            //     .on('oanimationend animationend webkitAnimationEnd', this._setFeaturedTopper.bind(this));
 	        }
 	    }
 	};
@@ -2056,6 +1219,8 @@
 	    if (!evt.currentTarget.classList.contains('tease-is-active')) {
 	        evt.currentTarget.focus();
 	        this._getActiveTeaseData(evt.currentTarget);
+	        this._setFeaturedTopper();
+	        (0, _jquery2.default)('body').addClass('teases-are-active');
 	    }
 	};
 
@@ -2075,7 +1240,7 @@
 	exports.default = MikeSilvaHomepage;
 
 /***/ },
-/* 9 */
+/* 7 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -2153,7 +1318,7 @@
 	exports.default = MikeSilvaUtilities;
 
 /***/ },
-/* 10 */
+/* 8 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -2166,7 +1331,7 @@
 
 	var _jquery2 = _interopRequireDefault(_jquery);
 
-	var _plyr = __webpack_require__(11);
+	var _plyr = __webpack_require__(9);
 
 	var _plyr2 = _interopRequireDefault(_plyr);
 
@@ -2201,14 +1366,14 @@
 	};
 
 	MikeSilvaSingle.prototype._playPlyr = function () {
-	    debugger;
-	    this.player[0].play();
+	    // debugger;
+	    // this.player[0].play();
 	};
 
 	exports.default = MikeSilvaSingle;
 
 /***/ },
-/* 11 */
+/* 9 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/* WEBPACK VAR INJECTION */(function(module) {'use strict';
