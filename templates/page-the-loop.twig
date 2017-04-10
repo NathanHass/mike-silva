@@ -5,7 +5,7 @@
 {% block content %}
   <div class="page__width">
     <section class="page__hgroup">
-      <h2 class="page__h">{{post.title}}</h2>
+      <h2 class="page__h"><span>{{post.title}}</span></h2>
     </section>
     <section class="page__content">
 
@@ -13,7 +13,31 @@
         <div class="page__content-block__width">
           {{post.content}}
         </div>
+        <ul class="page__loop-members">
+          {% for member in post.get_field('member') %}
+            <li class="page__loop-member">
+              <a href="" class="page__loop-member__link">
+                <div class="page__loop-member__img" style="background-image: url('{{member.headshot.url}}')"></div>
+                <p class="page__loop-member__name">{{member.name}}</p>
+              </a>
+            </li>
+         {% endfor %}
+        </ul>
       </div>
+
+      {% for group in post.get_field('services') %}
+
+          <div class="page__content-block">
+          <div class="page__content-block__width">
+             <h3 class="page__section-h">{{group.title}}</h3>
+             <ul class="page__bullet-list">
+             {% for item in group.services %}
+                <li class="page__bullet-list__item">{{item.service}}</li>
+             {% endfor %}
+            </ul>
+          </div>
+        </div>
+      {% endfor %}
 
       {% for member in post.get_field('member') %}
 

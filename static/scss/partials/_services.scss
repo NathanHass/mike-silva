@@ -1,13 +1,47 @@
 .page__width {
   color: currentColor;
-  padding: 30px;
-  @include mq($bp--desktop) {
-    padding-top:  80px;
+  padding: 15px;
+  margin: 0 auto;
+  max-width: 1080px;
+  @include mq($bp--tablet) {
+    padding: 30px;
+    width: calc(100% - 160px);
+    @include margin(100px auto);
+    position: relative;
+    &:before,
+    &:after {
+      display: block;
+      content: '';
+      border: 1px solid $color-dark-mint;
+      pointer-events: none;
+    }
+    &:before {
+      @include absolute(0 -20px);
+    }
+    &:after {
+      @include absolute(-20px 0);
+    }
   }
+  @include mq($bp--tablet-xl) {
+    padding: 100px 80px 80px;
+  }
+
 }
 
 .page__h {
   color: currentColor;
+  position: relative;
+  span {
+    background: #fff;
+    padding-right: 20px;
+  }
+  &:before {
+    content: '';
+    display: block;
+    @include absolute(50% 0 n 1px);
+    border-top: 1px solid $color-dark-mint;
+    z-index: -1;
+  }
 }
 
 .page__section-h {
@@ -24,38 +58,38 @@
   }
 }
 
-.page__width {
-  @include mq($bp--tablet-xl) {
-    display: flex;
-  }
-}
-
 .page__hgroup {
-  @include mq($bp--tablet-xl) {
-    min-width: 300px;
-  }
+  // @include mq($bp--tablet-xl) {
+  //   min-width: 300px;
+  // }
 }
 
 .page__content {
-  @include mq($bp--tablet-xl) {
-    min-width: calc(100% - 300px);
-  }
+  // @include mq($bp--tablet-xl) {
+  //   min-width: calc(100% - 300px);
+  // }
 }
 
 .page__content-block {
+  // color:;
   & + & {
-    border-top: 1px solid;
+    border-top: 1px solid $color-dark-mint;
     margin-top: 45px;
     padding-top: 55px;
+    @include mq($bp--tablet) {
+      // border-width: 2px;
+    }
   }
 }
 .page__content-block__width {
   max-width: 750px;
+  .page--loop & {
+    margin: 0 auto;
+  }
 }
 
 .page--loop {
-  color: #fff;
-  background-color: $color-dark-green;
+  color: $color-dark-green;
 }
 
 
@@ -63,7 +97,7 @@
   @include font($sans, 20px, 400);
 
   @include mq($bp--tablet) {
-    font-size: 28px;
+    font-size: 26px;
     font-weight: 300;
   }
 }
@@ -93,6 +127,18 @@
 
   &:last-child::after {
     display: none;
+  }
+
+
+  a {
+    text-decoration: none;
+    box-shadow: 0 -1px $color-spot inset;
+    color: $color-black;
+    margin-right: -.2em;
+    &:focus,
+    &:hover {
+      color: $color-spot;
+    }
   }
 }
 
@@ -133,29 +179,106 @@
   }
 }
 
-$loop-size: 200px;
+$loop-size: 180px;
 
 .page--loop {
   .page__content-block--intro {
-    position: relative;
-    margin-top: 50px;
-    margin-left: -20px;
-    background-color: $color-dark-green;
-    padding: 20px 0 0 20px;
 
-    &:before {
-      content: '';
-      width: $loop-size;
-      height: $loop-size;
-      border: 3px solid $color-mint;
-      border-radius: 50%;
-      z-index: -1;
-      @include absolute($loop-size*-.5 n n $loop-size*-.5);
-      opacity: .3;
+    @include mq($bp--tablet) {
+      position: relative;
+      margin-top: 50px;
+      margin-left: -20px;
+      padding: 20px 0 0 20px;
+    }
+  }
+
+  .page__h {
+    @include mq($bp--tablet) {
+      padding-bottom: 75px;
+      text-align: center;
+      position: relative;
+      &:after {
+        content: '';
+        width: $loop-size;
+        height: $loop-size;
+        border: 3px solid $color-spot;
+        background-color: #fff;
+        border-radius: 50%;
+        z-index: 1;
+        pointer-events: none;
+        @include absolute(50% 50% n n);
+        position: absolute;
+        transform: translate3d(50%, -50%, 0);
+      }
+      span {
+        background: transparent;
+        padding: 0;
+        z-index: 2;
+        @include absolute(50% 50% n n);
+        transform: translate3d(50%, -50%, 0);
+        line-height: .8;
+        width: $loop-size;
+      }
+    }
+    @include mq($bp--tablet, $bp--tablet-xl) {
+      margin-top: -80px;
+      &:before {
+        display: none;
+      }
+    }
+
+    @include mq($bp--tablet-xl) {
+      padding-bottom: 0;
+      &:after,
+      span {
+        right: 100%;
+        transform: translate3d(0, -50%, 0);
+        margin-bottom: 0;
+      }
+
     }
   }
 
   .page__content-block {
     border-color: $color-mint;
   }
+}
+
+
+.page__loop-member__img {
+  background-color: $color-dark-mint;
+  background-size: cover;
+  background-position: 50% 50%;
+  border-radius: 50%;
+  max-width: 120px;
+  margin: 0 auto 15px;
+
+  &:after {
+    display: block;
+    content: '';
+    padding-top: 100%;
+  }
+}
+
+.page__loop-members {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  margin-left: 0;
+  padding-left: 0;
+  justify-content: center;
+}
+
+.page__loop-member {
+  min-width: 130px;
+  width: 20%;
+  text-align: center;
+  padding: 0 8px;
+  @include mq($bp--tablet) {
+    padding: 0 15px;
+  }
+}
+
+.page__loop-member__name {
+  @include font($sans, 15px, 700);
 }

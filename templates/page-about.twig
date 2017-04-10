@@ -1,0 +1,58 @@
+{% extends "base.twig" %}
+
+{% block body_class %} page--services{% endblock %}
+
+{% block content %}
+  <div class="page__width">
+    <section class="page__hgroup">
+      <h2 class="page__h"><span>{{post.title}}</span></h2>
+    </section>
+    <section class="page__content">
+
+      <div class="page__content-block page__content-block--intro">
+        <div class="page__content-block__width">
+          {{post.content}}
+        </div>
+      </div>
+
+      {% for group in post.get_field('services') %}
+
+        <div class="page__content-block">
+          <div class="page__content-block__width">
+             <h3 class="page__section-h">{{group.title}}</h3>
+             <ul class="page__bullet-list">
+             {% for item in group.services %}
+                <li class="page__bullet-list__item">{{item.service}}</li>
+             {% endfor %}
+            </ul>
+          </div>
+        </div>
+      {% endfor %}
+
+
+        <div class="page__content-block">
+          <div class="page__content-block__width">
+             <h3 class="page__section-h">{{post.contact_title}}</h3>
+            <div class="page__content-block__width">
+              {{post.get_field('contact_message')}}
+            </div>
+             <ul class="page__bullet-list">
+
+            {% for item in post.get_field('contact_list') %}
+                <li class="page__bullet-list__item">
+                  {% if item.contact_type == 'phone' %}
+                    <a href="tel:+1-{{item.phone_number}}">{{item.text}}</a>
+                  {% elseif item.contact_type == 'email' %}
+                    <a href="mailto:{{item.email}}">{{item.text}}</a>
+                  {% elseif item.contact_type == 'url' %}
+                    <a href="{{item.url}}" target="_blank">{{item.text}}</a>
+                  {% endif %}
+                </li>
+             {% endfor %}
+            </ul>
+          </div>
+        </div>
+
+    </section>
+  </div>
+{% endblock %}

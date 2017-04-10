@@ -105,3 +105,23 @@
     }
   }
 }
+
+
+@mixin site-padding($padding: horiz) {
+  @if $padding == both {
+    padding: 15px;
+    @include mq($bp--tablet) {
+      padding: 30px;
+    }
+  } @elseif $padding == horiz {
+    padding: 0 15px;
+    @include mq($bp--tablet) {
+      padding: 0 30px;
+    }
+  } @elseif $padding == vert {
+    padding: 15px 0;
+    @include mq($bp--tablet) {
+      padding: 30px 0;
+    }
+  }
+}
