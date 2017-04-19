@@ -155,7 +155,10 @@ $intro-anim-timing: 2s;
   justify-content: flex-end;
   flex-direction: column;
   padding: 30px;
-  box-shadow: 0 0 0 8px $color-navy inset;
+  box-shadow: 0 8px $color-navy inset;
+  @include mq($bp--tablet) {
+    box-shadow: 0 0 0 8px $color-navy inset;
+  }
 
   .teases-are-active & {
     // background-image: url('../../img/transition-logo--opacity.svg');

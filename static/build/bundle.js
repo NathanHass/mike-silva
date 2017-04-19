@@ -83,6 +83,10 @@
 
 	var _mikesilva_single2 = _interopRequireDefault(_mikesilva_single);
 
+	var _mikesilva_nav = __webpack_require__(10);
+
+	var _mikesilva_nav2 = _interopRequireDefault(_mikesilva_nav);
+
 	var _jquery = __webpack_require__(3);
 
 	var _jquery2 = _interopRequireDefault(_jquery);
@@ -104,7 +108,7 @@
 	    *   Initialize js modules
 	    */
 	    init: function init() {
-	        this.modInstances = [new _mikesilva_homepage2.default(), new _mikesilva_single2.default()];
+	        this.modInstances = [new _mikesilva_homepage2.default(), new _mikesilva_single2.default(), new _mikesilva_nav2.default()];
 
 	        var _iteratorNormalCompletion = true;
 	        var _didIteratorError = false;
@@ -5152,6 +5156,71 @@
 	    window.CustomEvent = CustomEvent;
 	})();
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(5)(module)))
+
+/***/ },
+/* 10 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _jquery = __webpack_require__(3);
+
+	var _jquery2 = _interopRequireDefault(_jquery);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function MikeSilvaNav() {
+	    this.$body = (0, _jquery2.default)('body');
+	    this.$navToggle = (0, _jquery2.default)('.js-nav-toggle');
+	    this.navActiveClass = 'nav-is-active';
+	    this.navMinWidth = 500;
+	    this.w = (0, _jquery2.default)(window);
+	    this.wWidth = this.w.width();
+	}
+
+	/**
+	*
+	*/
+	MikeSilvaNav.prototype.init = function () {
+	    var _this = this;
+
+	    this.$navToggle.click(function () {
+	        _this.toggleNav();
+	    });
+
+	    this.w.resize(function () {
+	        _this.wWidth = _this.w.width();
+	        if (_this.wWidth >= _this.navMinWidth && _this.$body.hasClass(_this.navActiveClass)) {
+	            _this.closeNav();
+	        }
+	    });
+	};
+
+	MikeSilvaNav.prototype.toggleNav = function () {
+	    if (this.wWidth < this.navMinWidth) {
+	        if (this.$body.hasClass(this.navActiveClass)) {
+	            this.closeNav();
+	        } else {
+	            this.openNav();
+	        }
+	    }
+	};
+
+	MikeSilvaNav.prototype.closeNav = function () {
+	    this.$body.removeClass(this.navActiveClass);
+	    this.$navToggle.text('Menu');
+	};
+
+	MikeSilvaNav.prototype.openNav = function () {
+	    this.$body.addClass(this.navActiveClass);
+	    this.$navToggle.text('Close');
+	};
+
+	exports.default = MikeSilvaNav;
 
 /***/ }
 /******/ ]);

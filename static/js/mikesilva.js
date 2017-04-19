@@ -1,6 +1,7 @@
 import PageTrans from './modules/mikesilva_page_transition';
 import Homepage from './modules/mikesilva_homepage';
 import Single from './modules/mikesilva_single';
+import Nav from './modules/mikesilva_nav';
 import $ from 'jquery';
 
 
@@ -21,7 +22,8 @@ var MikeSilva = {
     init: function() {
         this.modInstances = [
             new Homepage(),
-            new Single()
+            new Single(),
+            new Nav()
         ];
 
         for ( let instance of this.modInstances ) {
