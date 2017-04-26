@@ -183,20 +183,35 @@ $intro-anim-timing: 2s;
 }
 $test-offset: $intro-anim-timing - .6s;
 .hp__sidebar__item {
-  @include font($sans, 24px, 300);
   line-height: 1;
   color: $color-navy;
+  @include font($sans, 24px, 300);
+  @include mq($bp--phablet, $bp--desktop-xl) {
+    @include fluid-font-size(24px $bp--phablet, 72px $bp--desktop-xl)
+  }
+  @include mq($bp--desktop-xl) {
+    font-size: 72px;
+  }
+
+
+
+  &:first-child {
+    font-weight: 900;
+  }
 
   &:last-child {
     margin-bottom: 0;
-  }
+    @include font($sans, 24px, 500);
 
-  @include mq($bp--phablet, $bp--desktop-xl) {
-    @include fluid-font-size(30px $bp--phablet, 72px $bp--desktop-xl)
-  }
-
-  @include mq($bp--desktop-xl) {
-    font-size: 72px;
+    @include mq($bp--phablet, $bp--desktop-xl) {
+      @include fluid-font-size(24px $bp--phablet, 30px $bp--desktop-xl)
+    }
+    @include mq($bp--tablet) {
+      padding-top: .7em;
+    }
+    @include mq($bp--desktop-xl) {
+      font-size: 30px;
+    }
   }
 }
 
@@ -208,8 +223,8 @@ $test-offset: $intro-anim-timing - .6s;
   padding: 0.3em 0 0 10px;
   transition: .3s ease;
   &.tease-is-active {
-    // color: $color-red;
-    color: #ff3737;
+    color: $color-orange;
+    // color: #ff3737;
     transform: translateX(10px);
   }
 }

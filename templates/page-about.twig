@@ -3,16 +3,18 @@
 {% block body_class %} page--services{% endblock %}
 
 {% block content %}
-  <div class="page__width">
-    <section class="page__hgroup">
-      <h2 class="page__h"><span>{{post.title}}</span></h2>
-    </section>
-    <section class="page__content">
 
+  <div class="page__topper">
+    <div class="page__topper__img-mod" style="background-image: url('{{post.thumbnail.src}}')">
+      <img class="page__topper__img" src="{{post.thumbnail.src}}">
+    </div>
+    <div class="page__topper__hgroup">
+      <h2 class="page__topper__h"><span>{{post.title}}</span></h2>
+    </div>
+  </div>
+  <div class="page__width">
+    <section class="page__content">
       <div class="page__content-block page__content-block--intro">
-        <div class="about__img-mod">
-          <img class="about__img" src="{{post.thumbnail.src}}">
-        </div>
         <div class="page__content-block__width">
           {{post.content}}
         </div>
