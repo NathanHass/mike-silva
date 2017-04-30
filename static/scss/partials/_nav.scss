@@ -43,12 +43,12 @@ $bp--nav-break: 500px;
 
 .site-nav__logo {
   float: left;
-  @include font($sans, 16px, 500);
+  @include font($sans, 16px, 700);
   margin: 0;
   line-height: 1;
   color: inherit;
   span {
-    font-weight: 300;
+    font-weight: 400;
   }
 }
 
@@ -69,7 +69,8 @@ $bp--nav-break: 500px;
   .nav-is-active & {
     @include mq(max, $bp--nav-break) {
       display: block;
-      @include absolute(100px 0 0)
+      @include absolute(100px 0 0);
+      color: black;
     }
   }
   @include mq($bp--nav-break) {

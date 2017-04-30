@@ -9,8 +9,9 @@
     position: relative;
   }
   @include mq($bp--desktop) {
-    margin: -100px auto 0;
-    border-top: 10px solid;
+    margin: -100px auto 50px;
+    border-top: 10px solid $color-spot;
+    padding: 50px;
   }
 }
 
@@ -37,8 +38,8 @@
 }
 
 .page--services {
-  color: $color-orange;
-
+  color: $color-dark-green;
+  // color: $color-orange;
 }
 
 .page--services,
@@ -57,18 +58,25 @@
       &:before {
         @include absolute(0 0 x);
         height: 50vh;
-        background-color: #91e0ff;
+        background-color: $color-mint;
         content: '';
       }
     }
   }
 }
 
+.nav-is-active .site-nav {
+  color: black;
+}
 
 .page--loop {
   .page__topper {
-    background-color: $color-dark-green;
+    background-color: #1a1a1a;
     align-items: center;
+
+    @include mq($bp--desktop) {
+      min-height: 55vh;
+    }
   }
   .page__topper__h {
     text-align: center;
@@ -76,19 +84,6 @@
   .page__topper__hgroup {
     @include margin(x a);
     width: 100%;
-  }
-  .page__topper__img-mod {
-    filter: grayscale(1);
-    mix-blend-mode: screen;
-  }
-
-  .content-wrapper {
-
-    @include mq($bp--tablet) {
-      &:before {
-        background-color: $color-mint;
-      }
-    }
   }
 }
 
@@ -108,7 +103,7 @@
   overflow: hidden;
   // color:;
   & + & {
-    border-top: 1px solid $color-dark-mint;
+    border-top: 1px solid $color-spot;
     margin-top: 45px;
     padding-top: 55px;
     @include mq($bp--tablet) {
@@ -138,7 +133,7 @@
   }
 
   @include mq($bp--desktop) {
-    font-size: 34px;
+    font-size: 35px;
     .page__content-block__width {
       max-width: 950px;
     }
@@ -147,7 +142,7 @@
 
 .page__bullet-list {
   list-style: none;
-  margin-left: 0;
+  @include margin(x x 0 0);
   padding-left: 0;
 }
 
@@ -156,16 +151,16 @@
   @include font($sans, 20px, 400);
 
   @include mq($bp--tablet) {
-    font-size: 28px;
+    font-size: 35px;
     font-weight: 300;
   }
 
   &::after {
     display: inline;
-    padding: 0px 0.35em 0 0.6em;
+    padding: 0 .55em 0 .9em;
     content: '•';
     vertical-align: middle;
-    font-size: 0.7em;
+    font-size: 0.5em;
   }
 
   &:last-child::after {
@@ -176,11 +171,11 @@
   a {
     text-decoration: none;
     box-shadow: 0 -1px $color-spot inset;
-    color: $color-black;
+    // color: $color-black;
     margin-right: -.2em;
     &:focus,
     &:hover {
-      color: $color-spot;
+      box-shadow: 0 -1px currentColor inset;
     }
   }
 }
@@ -229,7 +224,6 @@ $loop-size: 180px;
 
     @include mq($bp--tablet) {
       position: relative;
-      margin-top: 50px;
       margin-left: -20px;
       padding: 20px 0 0 20px;
     }
@@ -337,9 +331,10 @@ $loop-size: 180px;
   display: flex;
   align-items: flex-end;
   padding: 100px 30px 50px;
+  background-color: #1a1a1a;
   @include mq($bp--desktop) {
     padding: 150px 100px 200px;
-    min-height: 90vh;
+    min-height: 75vh;
   }
 }
 
@@ -352,11 +347,13 @@ $loop-size: 180px;
   @include absolute(0);
   background-size: cover;
   background-position: 50% 50%;
+  filter: grayscale(1);
+  mix-blend-mode: screen;
 }
 
 .page__topper__hgroup {
   position: relative;
-  max-width: 1000px;
+  max-width: 1080px;
   @include margin(x a);
 }
 
@@ -365,7 +362,7 @@ $loop-size: 180px;
   color: $color-white;
   line-height: 1;
   font-weight: 900;
-  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.37);
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, .2);
   font-size: 40px;
   margin-bottom: 0;
   @include mq($bp--phablet, $bp--desktop-xl) {

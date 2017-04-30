@@ -183,9 +183,9 @@ $intro-anim-timing: 2s;
 }
 $test-offset: $intro-anim-timing - .6s;
 .hp__sidebar__item {
-  line-height: 1;
+  line-height: 1.2;
   color: $color-navy;
-  @include font($sans, 24px, 300);
+  @include font($sans, 24px, 400);
   @include mq($bp--phablet, $bp--desktop-xl) {
     @include fluid-font-size(24px $bp--phablet, 72px $bp--desktop-xl)
   }
@@ -193,21 +193,25 @@ $test-offset: $intro-anim-timing - .6s;
     font-size: 72px;
   }
 
+  @include mq($bp--tablet) {
+    line-height: 1;
+  }
 
 
-  &:first-child {
-    font-weight: 900;
+  &:first-child a {
+    @include font($sans, 1.5em, 700);
   }
 
   &:last-child {
     margin-bottom: 0;
-    @include font($sans, 24px, 500);
+    @include font($sans, 18px, 400);
 
     @include mq($bp--phablet, $bp--desktop-xl) {
-      @include fluid-font-size(24px $bp--phablet, 30px $bp--desktop-xl)
+      @include fluid-font-size(18px $bp--phablet, 30px $bp--desktop-xl)
     }
     @include mq($bp--tablet) {
       padding-top: .7em;
+      // font-weight: 500;
     }
     @include mq($bp--desktop-xl) {
       font-size: 30px;
@@ -225,7 +229,7 @@ $test-offset: $intro-anim-timing - .6s;
   &.tease-is-active {
     color: $color-orange;
     // color: #ff3737;
-    transform: translateX(10px);
+    // transform: translateX(10px);
   }
 }
 
@@ -233,7 +237,7 @@ $test-offset: $intro-anim-timing - .6s;
   // color: #aaa;
   &:focus,
   &:hover {
-    color: #fff;
+    color: $color-blue;
   }
 }
 
