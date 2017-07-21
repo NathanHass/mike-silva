@@ -13,29 +13,25 @@
  * @since   Timber 0.1
  */
 
-global $wp_query;
-
-if (!isset($paged) || !$paged){
-  $paged = 1;
-}
-
 if ( ! class_exists( 'Timber' ) ) {
   echo 'Timber not activated. Make sure you activate the plugin in <a href="/wp-admin/plugins.php#timber">/wp-admin/plugins.php</a>';
   return;
 }
 
-$templates = array( 'page-work.twig' );
 $context   = Timber::get_context();
+// $context['stream'] = new TimberStream(103);
+$context['stream'] = new TimberStream(261);
+$templates = array( 'page-work.twig' );
 
-$posts = query_posts(array(
-  'posts_per_page' => 30,
-  'post_status'    => 'publish',
-  'post_type'      => 'post',
-  'paged'          => $paged
-));
+// $posts = query_posts(array(
+//   'posts_per_page' => 300,
+//   'post_status'    => 'publish',
+//   'post_type'      => 'post',
+//   'paged'          => $paged
+// ));
 
-$context['posts']         = Timber::get_posts();
-$context['pagination']    = Timber::get_pagination(array('mid_size' => 2));
-$context['total_pages']   = $wp_query->max_num_pages;
-$context['has_page_nums'] = true;
+// $context['posts']         = Timber::get_posts();
+// $context['pagination']    = Timber::get_pagination(array('mid_size' => 2));
+// $context['total_pages']   = $wp_query->max_num_pages;
+// $context['has_page_nums'] = true;
 Timber::render( $templates, $context );

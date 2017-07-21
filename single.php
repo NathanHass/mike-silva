@@ -12,11 +12,8 @@
 $context = Timber::get_context();
 $post = Timber::query_post();
 $context['post'] = $post;
-$context['posts'] = Timber::get_posts(array(
-  'paged'          => 0,
-  'posts_per_page' => 100,
-  'post_status'    => 'publish'
-));
+// $context['stream'] = new TimberStream(103);
+$context['stream'] = new TimberStream(261);
 
 
 $context['next_post'] = MS__Article::get_next();

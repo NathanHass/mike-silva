@@ -15,7 +15,7 @@ class MS__Article {
   /**
   * Get next faces post
   */
-  public static function get_next() {
+  function get_next() {
     self::$args['order'] = 'ASC';
 
     $adj_post  = get_adjacent_post(true, '', false);
@@ -27,7 +27,7 @@ class MS__Article {
   /**
   * Get previous faces post
   */
-  public static function get_prev() {
+  function get_prev() {
     self::$args['order'] = 'DESC';
 
     $adj_post  = get_adjacent_post(true, '', true);

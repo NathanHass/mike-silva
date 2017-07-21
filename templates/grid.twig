@@ -1,7 +1,7 @@
 
     <section class="work-tease__grid">
       <ul class="work-tease__list">
-        {% for post in posts %}
+        {% for post in stream.get_posts %}
           <li class="work-tease">
             <a href="{{ post.link }}" class="work-tease__link">
               <div class="work-tease__img-mod">

@@ -10,7 +10,7 @@
   }
   @include mq($bp--desktop) {
     margin: -100px auto 50px;
-    border-top: 10px solid $color-spot;
+    border-top: 10px solid $color-black;
     padding: 50px;
   }
 }
